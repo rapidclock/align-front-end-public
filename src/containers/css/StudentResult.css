@@ -1,9 +1,12 @@
 #student_result_container{
+	text-align: left;
 	background-color: white;
 	display:inline-block;
 	border-radius: 8px;
 	border: 2px solid #aeaeae;
-	padding:20px;
+	padding-left:20px;
+	padding-right:20px;
+	margin:5px;
 }
 
 #student_above_fold{
@@ -13,7 +16,8 @@
 
 #student_below_fold{
 	display:block;
-	margin:20px;
+	margin-bottom:20px;
+
 }
 
 hr {
@@ -21,15 +25,14 @@ hr {
 }
 
 .profile_picture{
-	max-width:150px;
-	max-height: 150px;
+	max-width:75px;
+	max-height: 75px;
 	border-radius: 50%;
-	margin:10px 35px;
 }
 
 .student_name{
 	color:#615445;
-	font-size: 1.5em;
+	font-size: 1.2em;
 	font-weight: 100;
 	font-family: "HelveticaNeueW01-67MdCn 692710", "HelveticaNeueW01-45Ligh", "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif;
 }
@@ -40,13 +43,12 @@ hr {
 	letter-spacing: .02em;
 	line-height: 1.5em;
 	text-transform: uppercase;
-	margin:0 0 10px;
 	font-family: "HelveticaNeueW01-67MdCn 692710", "HelveticaNeueW01-45Ligh", "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif;
 }
 
 .student_field{
 	color:#615445;
-	font-size:23px;
+	font-size: 0.75em;
 	line-height: 1.5em;
 	font-family: 'HelveticaNeueW01-67MdCn 692710', 'HelveticaNeueW01-45Ligh', 'Helvetica Neue', HelveticaNeue, Helvetica, sans-serif;
 }

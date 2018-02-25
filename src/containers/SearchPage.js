@@ -10,11 +10,24 @@ import 'css/SearchPage.css';
 class SearchPage extends Component {
   render() {
     return (
-      <div>
-    		<ResultPanel id="result_panel"/>
+    	<div>
+	    	<div>
+	    	</div>
+	      <div id="main_container">
+	      	<div id="filter_panel">
+	      		<StudentFilter/>
+	      	</div>
+	      	<div id="result_panel">
+	      		<ResultPanel/>
+	      	</div>
+	      </div>
+	      <div>
+	      	<Footer/>
+	      </div>
       </div>
     );
   }
 }
 
 export default SearchPage;
+

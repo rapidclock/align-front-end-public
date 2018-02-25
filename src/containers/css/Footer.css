@@ -1,10 +1,7 @@
 #menu-footer-area {
-  position: absolute;
-  bottom:0;
-  right:0;
-  left:0;
   background-color: #636264;
-  display: block;
+  display: inline-block;
+  width: 100%;
   color:#ffffff;
   padding: 15px;
 }
