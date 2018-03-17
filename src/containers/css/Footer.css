@@ -12,9 +12,19 @@
   width: calc(100%  /3);
 }
 
+#footer-logo-mobile{
+  width: 100%;
+}
+
 #footer-logo a{
   display:flex;
   justify-content: flex-end;
+  width: 100%;
+}
+
+#footer-logo-mobile a{
+  display:flex;
+  justify-content: center;
   width: 100%;
 }
 
@@ -23,13 +33,16 @@
   height:100%;
   padding-top: 15px;
   max-width: 300px;
-  text-align: right;
 }
 
 #footer-nav{
   float:left;
   width: 66.66%;
   width: calc(100% / 3 * 2);
+}
+
+#footer-nav-mobile{
+  width: 100%;
 }
 
 #footer-menu-links{

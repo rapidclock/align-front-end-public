@@ -6,7 +6,7 @@ class ResultPanel extends React.Component {
 	constructor(props){
 		super(props);
 
-		
+
 
 	}
 
