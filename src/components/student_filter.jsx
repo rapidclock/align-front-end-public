@@ -6,14 +6,15 @@ class StudentFilter extends React.Component {
 	constructor(props){
 		super(props);
 
-		this.state = {selCoops:'',
-								  selDegrees:'',
-		              selUni:'',
-		              selYears:''};
+		this.state = {
+			selCoops:'',
+			selDegrees:'',
+			selUni:'',
+			selYears:''
+		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
-
 	}
 
 	handleSubmit(event){
@@ -51,16 +52,15 @@ class StudentFilter extends React.Component {
 		var year_checked = [false, false, false, false, false];
 		var year_quant = [13, 10, 9, 6, 3];
 
-
 		return(
 			<div id="filter_container">
 				<div id="filter_above_fold">
-					<a className="filter_header_title">
-						Filter Students
-					</a>
+					<a className="filter_header_title">Filter Students</a>
 				</div>
 				<hr/>
-				<form id="filter_below_fold" onSubmit={this.handleSubmit}>
+				<form 
+					id="filter_below_fold" 
+					onSubmit={this.handleSubmit}>
 					<FilterGroup
 						name="coop_filter_group"
 						title={coop_title}
@@ -76,7 +76,7 @@ class StudentFilter extends React.Component {
 						quantity={degree_quant}
 					/>
 					<FilterGroup
-					  name="uni_filter_group"
+					  	name="uni_filter_group"
 						title={uni_title}
 						item_arr={uni_arr}
 						checked={uni_checked}
@@ -89,7 +89,9 @@ class StudentFilter extends React.Component {
 						checked={year_checked}
 						quantity={year_quant}
 					/>
-					<input type="submit" value="Update" />
+					<input 
+						type="submit" 
+						value="Update" />
 				</form>
 			</div>
 		);

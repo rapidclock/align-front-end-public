@@ -5,9 +5,6 @@ import 'css/ResultPanel.css';
 class ResultPanel extends React.Component {
 	constructor(props){
 		super(props);
-
-
-
 	}
 
 	getResultList(){
@@ -15,13 +12,14 @@ class ResultPanel extends React.Component {
 		var size = 2000;
 		var resultArr = new Array(size);
 
-
 		for(var x = 0; x < size; x++ ){
-			resultArr[x] = new ResultItem("name" + x,
-				                            "coop" + x,
-				                            "undergrad" + x,
-				                            "location" + x,
-				                            "year" + x);
+			resultArr[x] = new ResultItem(
+				"name" + x,
+				"coop" + x,
+				"undergrad" + x,
+				"location" + x,
+				"year" + x
+			);
 		}
 
 		return resultArr;
@@ -31,16 +29,18 @@ class ResultPanel extends React.Component {
 		var resultArr = this.getResultList();
 
 		return(
-			<div id="result_panel_main_container">
-				{
-					resultArr.map(function(listValue, index){
-						return (<StudentResult name={listValue.name}
-							                     coop={listValue.coop}
-							                     undergrad={listValue.undergrad}
-							                     location={listValue.location}
-							                     year={listValue.year}/>)
-					})
-				}
+			<div id="result_panel_main_container"> {
+				resultArr.map(function(listValue, index){
+					return (
+						<StudentResult 
+							name={listValue.name}
+							coop={listValue.coop}
+							undergrad={listValue.undergrad}
+							location={listValue.location}
+							year={listValue.year}/>
+					);
+				})
+			}
 			</div>
 		);
 	}
