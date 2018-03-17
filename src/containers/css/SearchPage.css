@@ -18,8 +18,20 @@ div#filter_panel{
   float: left;
 }
 
+div#filter_panel_mobile{
+  left: 0px;
+  top:0px;
+	width: 100%;
+}
+
 div#result_panel{
 	margin-left: 250px;
   height: 100%;
+  text-align: center;
+}
+
+div#result_panel_mobile{
+	margin-top: 50px;
+	height: 100%;
   text-align: center;
 }
