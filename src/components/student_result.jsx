@@ -6,20 +6,21 @@ class StudentResult extends React.Component {
 	constructor(props){
 		super(props);
 
-		this.state = {name:this.props.name,
-								  image:ProfilePlaceholder,
-		              coop:this.props.coop,
-		              undergrad:this.props.undergrad,
-		              location:this.props.location,
-		              year:this.props.year};
+		this.state = {
+			name:this.props.name,
+			image:ProfilePlaceholder,
+			coop:this.props.coop,
+			undergrad:this.props.undergrad,
+			location:this.props.location,
+			year:this.props.year
+		};
 	}
 
 	render() {
 		return(
 			<div id="student_result_container">
 				<div id="student_above_fold">
-					<img className="profile_picture" src={ProfilePlaceholder}>
-					</img>
+					<img className="profile_picture" src={ProfilePlaceholder}></img>
 					<br/>
 					<a className="student_name"> {this.state.name}
 					</a>
