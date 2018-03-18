@@ -49,8 +49,6 @@ class FilterGroup extends React.Component {
 		var changeHandler = this.handleChange;
 		var itemArr = this.getFilterItemList();
 
-		const {isMobile} = this.props;
-
 		return(
 		<div id="filter_group_container">
 			<a className="filter_group_title">{this.state.title}</a>
