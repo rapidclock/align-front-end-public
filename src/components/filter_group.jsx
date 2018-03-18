@@ -49,6 +49,8 @@ class FilterGroup extends React.Component {
 		var changeHandler = this.handleChange;
 		var itemArr = this.getFilterItemList();
 
+		const {isMobile} = this.props;
+
 		return(
 		<div id="filter_group_container">
 			<a className="filter_group_title">{this.state.title}</a>
@@ -56,7 +58,7 @@ class FilterGroup extends React.Component {
 				itemArr.map(function(listValue, index){
 					return (
 					<div className="checkBoxItem" key={index}>
-							<input 
+							<input
 							name={index}
 							type="checkBox"
 							checked={listValue.checked}
@@ -68,8 +70,8 @@ class FilterGroup extends React.Component {
 							</label>
 					</div>
 					);
-				})	
-					
+				})
+
 			}
 			</div>
 		</div>

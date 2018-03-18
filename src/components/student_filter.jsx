@@ -72,6 +72,7 @@ class StudentFilter extends React.Component {
 					item_arr={coop_arr}
 					checked={coop_checked}
 					quantity={coop_quant}
+					isMobile={isMobile}
 				/>
 				<FilterGroup
 					name="degree_filter_group"
@@ -79,6 +80,7 @@ class StudentFilter extends React.Component {
 					item_arr={degree_arr}
 					checked={degree_checked}
 					quantity={degree_quant}
+					isMobile={isMobile}
 				/>
 				<FilterGroup
 					name="uni_filter_group"
@@ -86,6 +88,7 @@ class StudentFilter extends React.Component {
 					item_arr={uni_arr}
 					checked={uni_checked}
 					quantity={uni_quant}
+					isMobile={isMobile}
 				/>
 				<FilterGroup
 					name="year_filter_group"
@@ -93,6 +96,7 @@ class StudentFilter extends React.Component {
 					item_arr={year_arr}
 					checked={year_checked}
 					quantity={year_quant}
+					isMobile={isMobile}
 				/>
 				<input type="submit" value="Update" />
 			</form>
@@ -100,7 +104,7 @@ class StudentFilter extends React.Component {
 
 		const mobileView = (
 			<div id="filter_container_mobile">
-				<div id="filter_above_fold">
+				<div id="filter_above_fold_mobile">
 					{this.state.isExpand ? (
 						<button
 							className="filter_header_title_mobile filter_header_title_mobile_expand"
@@ -123,10 +127,14 @@ class StudentFilter extends React.Component {
 							</svg>
 						</button>
 					)}
-					<div id="filter_contents_container_mobile">
-						{this.state.isExpand ? filterContent : null}
-					</div>
 				</div>
+				{
+					this.state.isExpand ? (
+						<div id="filter_contents_container_mobile">
+							{filterContent}
+						</div>
+					) : null
+				}
 			</div>
 		)
 

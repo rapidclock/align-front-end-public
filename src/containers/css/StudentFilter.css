@@ -5,10 +5,9 @@
 	padding:30px;
 }
 
-#filter_container_mobile {
+#filter_above_fold_mobile{
 	position: fixed;
 	width: 100%;
-	background-color: white;
 }
 
 .filter_header_title{
@@ -65,8 +64,14 @@
 }
 
 #filter_contents_container_mobile{
-	margin-left: 20px;
-	margin-right: 20px;
+	background-color: white;
+	position: fixed;
+	margin-top: 50px;
+	padding-left: 30px;
+	font-size: 150%;
+	width: 100%;
+	height: 40%;
+	overflow-y: scroll;
 }
 
 input[type=checkbox]{
