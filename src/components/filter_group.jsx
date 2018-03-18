@@ -19,12 +19,52 @@ class FilterGroup extends React.Component {
 
 		checked[event.target.name] = event.target.checked;
 
+		// updates state for React updates
 		this.setState({
 			title: this.state.title,
 			labels: this.state.labels,
 			checked: checked,
 			quantity: this.state.quantity
 		});
+
+		var selectedItem = this.state.labels[event.target.name];
+
+		// updates store for Redux updates
+		console.log(this.state.title);
+		switch(this.state.title) {
+			case "Coop":
+				if(event.target.checked){
+					this.props.addCoop(selectedItem);
+				}
+				else {
+					this.props.removeCoop(selectedItem);
+				}
+				break;
+			case "Degree Subject":
+				if(event.target.checked){
+					this.props.addDegree(selectedItem);
+				}
+				else {
+					this.props.removeDegree(selectedItem);
+				}
+				break;
+			case "Undergraduate University":
+				if(event.target.checked){
+					this.props.addUniversity(selectedItem);
+				}
+				else {
+					this.props.removeUniversity(selectedItem);
+				}
+				break;
+			case "Year":
+				if(event.target.checked){
+					this.props.addYear(selectedItem);
+				}
+				else {
+					this.props.removeYear(selectedItem);
+				}
+				break;
+		}
 	}
 
 	getFilterItemList() {
