@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 
 import './index.css';
 
-import SearchPage from 'containers/SearchPage';
+import SearchPage from './containers/SearchPage';
 
 import registerServiceWorker from './registerServiceWorker';
 
