@@ -56,7 +56,7 @@ class FilterGroup extends React.Component {
 				itemArr.map(function(listValue, index){
 					return (
 					<div className="checkBoxItem" key={index}>
-							<input 
+							<input
 							name={index}
 							type="checkBox"
 							checked={listValue.checked}
@@ -68,8 +68,8 @@ class FilterGroup extends React.Component {
 							</label>
 					</div>
 					);
-				})	
-					
+				})
+
 			}
 			</div>
 		</div>

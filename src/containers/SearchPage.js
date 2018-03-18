@@ -7,15 +7,55 @@ import Header from 'components/header.jsx';
 
 import 'css/SearchPage.css';
 
+const MOBILE_VIEW_WIDTH = 600;
+
 class SearchPage extends Component {
+  constructor() {
+	  super();
+	  this.state = {
+	    width: window.innerWidth,
+	  };
+	}
+
+	componentWillMount() {
+	  window.addEventListener('resize', this.handleWindowSizeChange);
+	}
+
+	componentWillUnmount() {
+	  window.removeEventListener('resize', this.handleWindowSizeChange);
+	}
+
+	handleWindowSizeChange = () => {
+	  this.setState({ width: window.innerWidth });
+	};
+
   render() {
-    return (
+    const {width} = this.state;
+    const isMobile = width < MOBILE_VIEW_WIDTH;
+
+    const mobileView = (
+      <div>
+	      <div id="main_container">
+          <div id="filter_panel_mobile">
+	      		<StudentFilter isMobile={isMobile}/>
+	      	</div>
+	      	<div id="result_panel_mobile">
+	      		<ResultPanel/>
+	      	</div>
+	      </div>
+	      <div>
+	      	<Footer/>
+	      </div>
+      </div>
+    )
+
+    const desktopView = (
     	<div>
 	    	<div>
 	    	</div>
 	      <div id="main_container">
 	      	<div id="filter_panel">
-	      		<StudentFilter/>
+	      		<StudentFilter isMobile={isMobile}/>
 	      	</div>
 	      	<div id="result_panel">
 	      		<ResultPanel/>
@@ -26,6 +66,8 @@ class SearchPage extends Component {
 	      </div>
       </div>
     );
+
+    return isMobile ? mobileView : desktopView;
   }
 }
 
