@@ -1,9 +1,9 @@
-export default function reducer( state = {
+export default function filters( state = {
 	selectedCoops: [],
 	selectedDegrees: [],
 	selectedUniversities: [],
 	selectedYears: [],
-	error: null,
+	error: null
 }, action) {
 	switch (action.type) {
 		case "ADD_COOP": {
@@ -53,6 +53,9 @@ export default function reducer( state = {
 				...state,
 				selectedYears: state.selectedYears.filter(year => year != action.payload)
 			}
+		}
+		default: {
+			return state
 		}
 	}
 }

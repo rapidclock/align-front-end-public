@@ -1,10 +1,5 @@
 import React from 'react';
-import * as filter from 'redux/filter_actions';
-import { connect } from 'react-redux';
 
-@connect((store) => {
-	return { };
-})
 class FilterGroup extends React.Component {
 	constructor(props) {
 		super(props);
@@ -35,35 +30,40 @@ class FilterGroup extends React.Component {
 		var selectedItem = this.state.labels[event.target.name];
 
 		// updates store for Redux updates
+		console.log(this.state.title);
 		switch(this.state.title) {
 			case "Coop":
 				if(event.target.checked){
-					this.props.dispatch(filter.addCoop(selectedItem));
+					this.props.addCoop(selectedItem);
 				}
 				else {
-					this.props.dispatch(ilter.removeCoop(selectedItem));
+					this.props.removeCoop(selectedItem);
 				}
+				break;
 			case "Degree Subject":
 				if(event.target.checked){
-					this.props.dispatch(filter.addDegree(selectedItem));
+					this.props.addDegree(selectedItem);
 				}
 				else {
-					this.props.dispatch(filter.removeDegree(selectedItem));
+					this.props.removeDegree(selectedItem);
 				}
+				break;
 			case "Undergraduate University":
 				if(event.target.checked){
-					this.props.dispatch(filter.addUniversity(selectedItem));
+					this.props.addUniversity(selectedItem);
 				}
 				else {
-					this.props.dispatch(filter.removeUniversity(selectedItem));
+					this.props.removeUniversity(selectedItem);
 				}
+				break;
 			case "Year":
 				if(event.target.checked){
-					this.props.dispatch(filter.addYear(selectedItem));
+					this.props.addYear(selectedItem);
 				}
 				else {
-					this.props.dispatch(filter.removeYear(selectedItem));
+					this.props.removeYear(selectedItem);
 				}
+				break;
 		}
 	}
 

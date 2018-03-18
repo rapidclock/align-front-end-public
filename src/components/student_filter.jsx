@@ -1,4 +1,5 @@
 import React from 'react';
+import FilterGroupContainer from 'containers/filter_group_container'
 import FilterGroup from 'components/filter_group.jsx';
 import 'css/StudentFilter.css'
 
@@ -61,28 +62,28 @@ class StudentFilter extends React.Component {
 				<form 
 					id="filter_below_fold" 
 					onSubmit={this.handleSubmit}>
-					<FilterGroup
+					<FilterGroupContainer
 						name="coop_filter_group"
 						title={coop_title}
 						item_arr={coop_arr}
 						checked={coop_checked}
 						quantity={coop_quant}
 					/>
-					<FilterGroup
+					<FilterGroupContainer
 						name="degree_filter_group"
 						title={degree_title}
 						item_arr={degree_arr}
 						checked={degree_checked}
 						quantity={degree_quant}
 					/>
-					<FilterGroup
+					<FilterGroupContainer
 					  	name="uni_filter_group"
 						title={uni_title}
 						item_arr={uni_arr}
 						checked={uni_checked}
 						quantity={uni_quant}
 					/>
-					<FilterGroup
+					<FilterGroupContainer
 					  name="year_filter_group"
 						title={year_title}
 						item_arr={year_arr}
