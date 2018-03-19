@@ -1,4 +1,4 @@
-export default function filters( state = {
+export default function filterGroupReducer( state = {
 	selectedCoops: [],
 	selectedDegrees: [],
 	selectedUniversities: [],
@@ -6,49 +6,49 @@ export default function filters( state = {
 	error: null
 }, action) {
 	switch (action.type) {
-		case "ADD_COOP": {
+		case "ADD_SELECTED_COOP": {
 			return {
 				...state,
 				selectedCoops: [...state.selectedCoops, action.payload]
 			}
 		}
-		case "REMOVE_COOP": {
+		case "REMOVE_SELECTED_COOP": {
 			return {
 				...state,
 				selectedCoops: state.selectedCoops.filter(coop => coop != action.payload)
 			}
 		}
-		case "ADD_DEGREE": {
+		case "ADD_SELECTED_DEGREE": {
 			return {
 				...state,
 				selectedDegrees: [...state.selectedDegrees, action.payload]
 			}
 		}
-		case "REMOVE_DEGREE": {
+		case "REMOVE_SELECTED_DEGREE": {
 			return {
 				...state,
 				selectedDegrees: state.selectedDegrees.filter(degree => degree != action.payload)
 			}
 		}
-		case "ADD_UNIVERSITY": {
+		case "ADD_SELECTED_UNIVERSITY": {
 			return {
 				...state,
 				selectedUniversities: [...state.selectedUniversities, action.payload]
 			}
 		}
-		case "REMOVE_UNIVERSITY": {
+		case "REMOVE_SELECTED_UNIVERSITY": {
 			return {
 				...state,
 				selectedUniversities: state.selectedUniversities.filter(university => university != action.payload)
 			}
 		}
-		case "ADD_YEAR": {
+		case "ADD_SELECTED_YEAR": {
 			return {
 				...state,
 				selectedYears: [...state.selectedYears, action.payload]
 			}
 		}
-		case "REMOVE_YEAR": {
+		case "REMOVE_SELECTED_YEAR": {
 			return {
 				...state,
 				selectedYears: state.selectedYears.filter(year => year != action.payload)
