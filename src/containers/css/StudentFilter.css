@@ -6,7 +6,6 @@
 }
 
 #filter_above_fold_mobile{
-	position: fixed;
 	width: 100%;
 }
 
@@ -20,6 +19,7 @@
 }
 
 .filter_header_title_mobile{
+	position: fixed;
 	height: 50px;
 	width: 100%;
 	border: none;
@@ -65,13 +65,34 @@
 
 #filter_contents_container_mobile{
 	background-color: white;
+	opacity: 0.9;
 	position: fixed;
-	margin-top: 50px;
+	top: 50px;
+	bottom: 0px;
+	width: 100%;
+}
+
+.filter_items_mobile{
+	overflow-y: scroll;
+	position: fixed;
+	top: 50px;
+	bottom: 80px;
 	padding-left: 30px;
 	font-size: 150%;
 	width: 100%;
-	height: 60%;
-	overflow-y: scroll;
+}
+
+.filter_submit_botton_mobile{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+}
+
+.button_mobile{
+	font-size: 16px;
+	width: 50%;
+	text-align: center;
 }
 
 input[type=checkbox]{

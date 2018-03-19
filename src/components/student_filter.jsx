@@ -72,9 +72,6 @@ class StudentFilter extends React.Component {
 					title={year_title}
 					item_arr={year_arr}
 				/>
-				<button 
-					type="button"
-					onClick={submitHandler}>Update </button>
 			</div>
 		)
 
@@ -105,8 +102,18 @@ class StudentFilter extends React.Component {
 				</div>
 				{
 					this.state.isExpand ? (
-						<div id="filter_contents_container_mobile">
-							{filterContent}
+						<div>
+							<div id="filter_contents_container_mobile">
+								<div className="filter_items_mobile">{filterContent}</div>
+								<div className="filter_submit_botton_mobile">
+									<button
+										className="button_mobile"
+										type="button"
+										onClick={submitHandler}>
+										Update
+									</button>
+								</div>
+							</div>
 						</div>
 					) : null
 				}
@@ -123,6 +130,11 @@ class StudentFilter extends React.Component {
 				<hr />
 				<div id="filter_contents_container">
 					{filterContent}
+					<button
+						type="button"
+						onClick={submitHandler}>
+						Update
+					</button>
 				</div>
 			</div>
 		);

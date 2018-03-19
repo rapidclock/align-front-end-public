@@ -3,6 +3,9 @@
   display: inline-block;
   width: 100%;
   color:#ffffff;
+}
+
+#menu-footer-inner-container {
   padding: 15px;
 }
 

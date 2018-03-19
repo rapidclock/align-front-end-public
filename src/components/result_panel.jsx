@@ -32,7 +32,7 @@ class ResultPanel extends React.Component {
 			<div id="result_panel_main_container"> {
 				resultArr.map(function(listValue, index){
 					return (
-						<StudentResult 
+						<StudentResult
 							name={listValue.name}
 							coop={listValue.coop}
 							undergrad={listValue.undergrad}
