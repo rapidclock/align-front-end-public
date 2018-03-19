@@ -76,7 +76,7 @@ class SearchPage extends Component {
 			<div>
 				<div id="main_container">
 					<div id="filter_panel_mobile">
-						<StudentFilterContainer 
+						<StudentFilterContainer
 							isMobile={isMobile}
 							submitHandler= {this.handleSubmit.bind(this)}/>
 					</div>
@@ -96,16 +96,17 @@ class SearchPage extends Component {
 				</div>
 				<div id="main_container">
 					<div id="filter_panel">
-						<StudentFilterContainer 
+						<StudentFilterContainer
 							isMobile={isMobile}
 							submitHandler= {this.handleSubmit.bind(this)}/>
 					</div>
 					<div id="result_panel">
 						<ResultPanel/>
+						<Footer/>
 					</div>
 				</div>
 				<div>
-					<Footer/>
+
 				</div>
 			</div>
 		);
