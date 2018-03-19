@@ -1,42 +1,43 @@
 import React, { Component } from 'react';
 import FilterGroup from 'components/filter_group'
 import { connect } from 'react-redux';
-import * as filterActions from 'redux/filter_actions';
+import * as FilterActions from 'redux/filter_actions';
 
 const mapStateToProps = (state) => {
-	return {
-
-	}
+    return {
+        displayed: state.studentFilter,
+        selected: state.filterGroup
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addCoop: input => {
-            dispatch(filterActions.addCoop(input));
+        addSelectedCoop: input => {
+            dispatch(FilterActions.addSelectedCoop(input));
         },
-        removeCoop: input => {
-            dispatch(filterActions.removeCoop(input));
+        removeSelectedCoop: input => {
+            dispatch(FilterActions.removeSelectedCoop(input));
         },
-        addDegree: input => {
-            dispatch(filterActions.addDegree(input));
+        addSelectedDegree: input => {
+            dispatch(FilterActions.addSelectedDegree(input));
         },
-        removeDegree: input => {
-            dispatch(filterActions.removeDegree(input));
+        removeSelectedDegree: input => {
+            dispatch(FilterActions.removeSelectedDegree(input));
         },
-        addUniversity: input => {
-            dispatch(filterActions.addUniversity(input));
+        addSelectedUniversity: input => {
+            dispatch(FilterActions.addSelectedUniversity(input));
         },
-        removeUniversity: input => {
-            dispatch(filterActions.removeUniversity(input));
+        removeSelectedUniversity: input => {
+            dispatch(FilterActions.removeSelectedUniversity(input));
         },
-        addYear: input => {
-            dispatch(filterActions.addYear(input));
+        addSelectedear: input => {
+            dispatch(FilterActions.addSelectedYear(input));
         },
-        removeYear: input => {
-            dispatch(filterActions.removeYear(input));
+        removeSelectedYear: input => {
+            dispatch(FilterActions.removeSelectedYear(input));
         },
     };
 };
 
-const FilterGroupContainer = connect(null,mapDispatchToProps)(FilterGroup);
+const FilterGroupContainer = connect(mapStateToProps,mapDispatchToProps)(FilterGroup);
 export default FilterGroupContainer;

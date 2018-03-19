@@ -8,17 +8,17 @@ import SearchPage from './containers/SearchPage';
 
 import registerServiceWorker from './registerServiceWorker';
 
-import  { createStore } from "redux";
-import filters from "redux/filter_reducer";
+import  { createStore, combineReducers } from "redux";
 
+import studentFilterReducer from "redux/student_filter_reducer";
+import filterGroupReducer from "redux/filter_group_reducer";
 
-let store = createStore(filters, {
-	selectedCoops: [],
-	selectedDegrees: [],
-	selectedUniversities: [],
-	selectedYears: [],
-	error: null
+const allReducers = combineReducers({
+	studentFilter: studentFilterReducer,
+	filterGroup: filterGroupReducer
 });
+
+let store = createStore(allReducers);
 
 store.subscribe(() => {
 	console.log("store changed", store.getState())
@@ -29,6 +29,6 @@ const app = document.getElementById('root');
 
 ReactDOM.render(
 	<Provider store={store}>
-		<SearchPage />
+		<SearchPage store={store} />
 	</Provider>, app);
 registerServiceWorker();

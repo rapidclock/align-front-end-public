@@ -4,64 +4,81 @@ class FilterGroup extends React.Component {
 	constructor(props) {
 		super(props);
 
+		switch(this.props.title){
+			case "Coop":
+				var checked = this.props.selected.selectedCoops;
+			case "Degree Subject":
+				var checked = this.props.selected.selectedDegrees;
+			case "Undergraduate University":
+				var checked = this.props.selected.selectedUniversities;
+			case "Year":
+				var checked = this.props.selected.selectedYears;	
+		}
+
 		this.state = {
 			title: this.props.title,
 			labels: this.props.item_arr,
-			checked: this.props.checked,
-			quantity: this.props.quantity
+			checked: checked
 		};
 
 		this.handleChange = this.handleChange.bind(this);
 	}
 
 	handleChange(event) {
-		var checked = this.state.checked;
+		var store = this.props.store;
 
-		checked[event.target.name] = event.target.checked;
+		var checked = this.state.checked;
+		var labels = this.state.labels;
+
+		if(event.target.checked){
+			checked.push(labels[event.target.name]);
+		}
+		else {
+			var index = checked.indexOf(labels[event.target.name]);
+			checked.splice(index, 1);
+		}
 
 		// updates state for React updates
 		this.setState({
 			title: this.state.title,
-			labels: this.state.labels,
-			checked: checked,
-			quantity: this.state.quantity
+			labels: labels,
+			checked: checked
 		});
 
 		var selectedItem = this.state.labels[event.target.name];
 
 		// updates store for Redux updates
-		console.log(this.state.title);
 		switch(this.state.title) {
 			case "Coop":
 				if(event.target.checked){
-					this.props.addCoop(selectedItem);
+					this.props.addSelectedCoop(selectedItem);
 				}
 				else {
-					this.props.removeCoop(selectedItem);
+					this.props.removeSelectedCoop(selectedItem);
 				}
 				break;
 			case "Degree Subject":
 				if(event.target.checked){
-					this.props.addDegree(selectedItem);
+					this.props.addSelectedDegree(selectedItem);
 				}
 				else {
-					this.props.removeDegree(selectedItem);
+					this.props.removeSelectedDegree(selectedItem);
 				}
 				break;
 			case "Undergraduate University":
 				if(event.target.checked){
-					this.props.addUniversity(selectedItem);
+					this.props.addSelectedUniversity(selectedItem);
 				}
 				else {
-					this.props.removeUniversity(selectedItem);
+					this.props.removeSelectedUniversity(selectedItem);
 				}
 				break;
 			case "Year":
 				if(event.target.checked){
-					this.props.addYear(selectedItem);
+					this.props.addSelectedYear(selectedItem);
 				}
 				else {
-					this.props.removeYear(selectedItem);
+					this.props.removeSelectedYear(selectedItem);
 				}
 				break;
 		}
@@ -72,10 +89,14 @@ class FilterGroup extends React.Component {
 		var itemArr = new Array(size);
 
 		for(var x = 0; x < size; x++){
+			var checked = false;
+			if(this.state.checked.indexOf(this.state.labels[x]) > -1){
+				checked = true;
+			}
+
 			itemArr[x] = new FilterItem(
 				this.state.labels[x],
-				this.state.checked[x],
-				this.state.quantity[x]);
+				checked);
 		}
 
 		return itemArr;
@@ -103,7 +124,7 @@ class FilterGroup extends React.Component {
 							onChange={changeHandler}
 							/>
 							<label className="filter_group_label"> {
-								listValue.label + " (" + listValue.quantity + ")"
+								listValue.label
 							}
 							</label>
 					</div>
@@ -118,10 +139,9 @@ class FilterGroup extends React.Component {
 }
 
 class FilterItem {
-	constructor(label, checked, quantity) {
+	constructor(label, checked) {
 		this.checked = checked;
 		this.label = label;
-		this.quantity = quantity;
 	}
 }
 

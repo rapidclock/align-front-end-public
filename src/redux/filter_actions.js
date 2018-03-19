@@ -1,55 +1,85 @@
-export function addCoop(coop) {
+export function addSelectedCoop(coop) {
 	return {
-		type: 'ADD_COOP',
+		type: 'ADD_SELECTED_COOP',
 		payload: coop
 	}
 }
 
-export function removeCoop(coop) {
+export function removeSelectedCoop(coop) {
 	return {
-		type: 'REMOVE_COOP',
+		type: 'REMOVE_SELECTED_COOP',
 		payload: coop
 	}
 }
 
-export function addDegree(degree) {
+export function addSelectedDegree(degree) {
 	return {
-		type: 'ADD_DEGREE',
+		type: 'ADD_SELECTED_DEGREE',
 		payload: degree
 	}
 }
 
-export function removeDegree(degree) {
+export function removeSelectedDegree(degree) {
 	return {
-		type: 'REMOVE_DEGREE',
+		type: 'REMOVE_SELECTED_DEGREE',
 		payload: degree
 	}
 }
 
-export function addUniversity(university) {
+export function addSelectedUniversity(university) {
 	return {
-		type: 'ADD_UNIVERSITY',
+		type: 'ADD_SELECTED_UNIVERSITY',
 		payload: university
 	}
 }
 
-export function removeUniversity(university) {
+export function removeSelectedUniversity(university) {
 	return {
-		type: 'REMOVE_UNIVERSITY',
+		type: 'REMOVE_SELECTED_UNIVERSITY',
 		payload: university
 	}
 }
 
-export function addYear(year) {
+export function addSelectedYear(year) {
 	return {
-		type: 'ADD_YEAR',
+		type: 'ADD_SELECTED_YEAR',
 		payload: year
 	}
 }
 
-export function removeYear(year) {
+export function removeSelectedYear(year) {
 	return {
-		type: 'REMOVE_YEAR',
+		type: 'REMOVE_SELECTED_YEAR',
 		payload: year
 	}
 }
+
+export function setDisplayedCoops(coops) {
+	return {
+		type: 'SET_DISPLAYED_COOPS',
+		payload: coops
+	}
+}
+
+export function setDisplayedDegrees(degrees) {
+	return {
+		type: 'SET_DISPLAYED_DEGREES',
+		payload: degrees
+	}
+}
+
+export function setDisplayedUniversities(universities) {
+	return {
+		type: 'SET_DISPLAYED_UNIVERSITIES',
+		payload: universities
+	}
+}
+
+export function setDisplayedYears(years) {
+	return {
+		type: 'SET_DISPLAYED_YEARS',
+		payload: years
+	}
+}
+
+
