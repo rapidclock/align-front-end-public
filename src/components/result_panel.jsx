@@ -26,21 +26,46 @@ class ResultPanel extends React.Component {
 	}
 
 	render() {
+		const {isMobile} = this.props;
 		var resultArr = this.getResultList();
 
 		return(
-			<div id="result_panel_main_container"> {
-				resultArr.map(function(listValue, index){
-					return (
-						<StudentResult
-							name={listValue.name}
-							coop={listValue.coop}
-							undergrad={listValue.undergrad}
-							location={listValue.location}
-							year={listValue.year}/>
-					);
-				})
-			}
+			<div id="result_panel_main_container">
+				{isMobile ? (
+					<div>
+						{resultArr.map(function(listValue, index){
+							return (
+								<StudentResult
+									name={listValue.name}
+									coop={listValue.coop}
+									undergrad={listValue.undergrad}
+									location={listValue.location}
+									year={listValue.year}/>
+							);
+						})}
+					</div>
+				) : (
+					<div>
+						<div id="result_header">
+							<a className="result_header_title">
+								Students Like Me <br />Search Results
+							</a>
+							<hr />
+						</div>
+						<div id="result_list">
+							{resultArr.map(function(listValue, index){
+								return (
+									<StudentResult
+										name={listValue.name}
+										coop={listValue.coop}
+										undergrad={listValue.undergrad}
+										location={listValue.location}
+										year={listValue.year}/>
+								);
+							})}
+						</div>
+					</div>
+				)}
 			</div>
 		);
 	}

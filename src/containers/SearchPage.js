@@ -80,8 +80,8 @@ class SearchPage extends Component {
 							isMobile={isMobile}
 							submitHandler= {this.handleSubmit.bind(this)}/>
 					</div>
-						<div id="result_panel_mobile">
-						<ResultPanel/>
+					<div id="result_panel_mobile">
+						<ResultPanel isMobile={isMobile}/>
 					</div>
 				</div>
 				<div>
@@ -92,8 +92,6 @@ class SearchPage extends Component {
 
 		const desktopView = (
 			<div>
-				<div>
-				</div>
 				<div id="main_container">
 					<div id="filter_panel">
 						<StudentFilterContainer
@@ -101,12 +99,9 @@ class SearchPage extends Component {
 							submitHandler= {this.handleSubmit.bind(this)}/>
 					</div>
 					<div id="result_panel">
-						<ResultPanel/>
-						<Footer/>
+						<ResultPanel isMobile={isMobile}/>
+						<Footer />
 					</div>
-				</div>
-				<div>
-
 				</div>
 			</div>
 		);

@@ -80,23 +80,27 @@ class StudentFilter extends React.Component {
 				<div id="filter_above_fold_mobile">
 					{this.state.isExpand ? (
 						<button
-							className="filter_header_title_mobile filter_header_title_mobile_expand"
+							className="filter_header_title_mobile"
 							onClick={this.handleExpand}>
-							Filter Students
-							<svg fill="black" height="24" viewBox="0 0 24 24" width="24"
-								xmlns="http://www.w3.org/2000/svg">
-								<path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
-								<path d="M0 0h24v24H0z" fill="none"/>
-							</svg>
+							Students Like Me
+							<a className='filter_label_mobile'>
+								<svg fill="#615445" height="20" viewBox="0 0 24 24" width="24"
+									xmlns="http://www.w3.org/2000/svg">
+									<path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
+									<path d="M0 0h24v24H0z" fill="none"/>
+								</svg>
+							</a>
 						</button>
 					) : (
-						<button className="filter_header_title_mobile" onClick={this.handleExpand}>
-							Filter Students
-							<svg fill="white" height="24" viewBox="0 0 24 24" width="24"
-								xmlns="http://www.w3.org/2000/svg">
-								<path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
-								<path d="M0 0h24v24H0z" fill="none"/>
-							</svg>
+						<button className="filter_header_title_mobile" >
+							Students Like Me
+							<a className='filter_label_mobile' onClick={this.handleExpand}>
+								<svg fill="white" height="20" viewBox="0 0 24 24" width="24"
+									xmlns="http://www.w3.org/2000/svg">
+									<path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
+									<path d="M0 0h24v24H0z" fill="none"/>
+								</svg>
+							</a>
 						</button>
 					)}
 				</div>
