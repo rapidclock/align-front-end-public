@@ -82,4 +82,32 @@ export function setDisplayedYears(years) {
 	}
 }
 
+export function setAllCoops(coops) {
+	return {
+		type: 'SET_ALL_COOPS',
+		payload: coops
+	}
+}
+
+export function setAllDegrees(degrees) {
+	return {
+		type: 'SET_ALL_DEGREES',
+		payload: degrees
+	}
+}
+
+export function setAllUniversities(universities) {
+	return {
+		type: 'SET_ALL_UNIVERSITIES',
+		payload: universities
+	}
+}
+
+export function setAllYears(years) {
+	return {
+		type: 'SET_ALL_YEARS',
+		payload: years
+	}
+}
+
 

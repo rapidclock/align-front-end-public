@@ -286,6 +286,34 @@ export function getTopDegrees(){
 export function getTopYears(){
 	return(
 	{
-		"graduationyears": ["2015", "2016", "2017", "2018", "2019", "2020"]
+		"graduationyears": ["2015", "2017", "2018", "2020"]
 	})	
+}
+
+export function getAllDegrees(){
+    return(
+    {
+        "undergraddegrees": ["Finance", "Biology", "Mathematics", "Chemistry", "Accounting", "Physics"]
+    })  
+}
+
+export function getAllCoops(){
+    return(
+    {
+        "coops": ["Apple", "Atari", "Burger King", "Google", "Dell", "Microsoft", "HP"]
+    })
+}
+
+export function getAllYears(){
+    return(
+    {
+        "graduationyears": ["2015", "2016", "2017", "2018", "2019", "2020"]
+    })  
+}
+
+export function getAllUniversities(){
+    return(
+    {
+        "undergradschools": ["MIT", "GWU", "NYU", "Yale", "Brown", "Tannenbaum", "McDonalds University"]
+    })  
 }

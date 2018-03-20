@@ -9,6 +9,13 @@
 	width: 100%;
 }
 
+a{
+	margin-left: 5px;
+	color:#615445;
+	font-size: 0.75em;
+	font-family: "HelveticaNeueW01-67MdCn 692710", "HelveticaNeueW01-45Ligh", "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif;
+}
+
 .filter_header_title{
 	color:#e11a2c;
 	font-size: 1.5em;

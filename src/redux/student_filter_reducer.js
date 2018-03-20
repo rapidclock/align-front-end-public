@@ -3,6 +3,10 @@ export default function studentFilterReducer( state = {
 	displayedDegrees: [],
 	displayedUniversities: [],
 	displayedYears: [],
+	allCoops: [],
+	allDegrees: [],
+	allUniversities: [],
+	allYears: [],
 	error: null
 }, action) {
 	switch (action.type) {
@@ -28,6 +32,30 @@ export default function studentFilterReducer( state = {
 			return {
 				...state,
 				displayedYears: action.payload
+			}
+		}
+		case "SET_ALL_COOPS": {
+			return {
+				...state,
+				allCoops: action.payload
+			}
+		}
+		case "SET_ALL_DEGREES": {
+			return {
+				...state,
+				allDegrees: action.payload
+			}
+		}
+		case "SET_ALL_UNIVERSITIES": {
+			return {
+				...state,
+				allUniversities: action.payload
+			}
+		}
+		case "SET_ALL_YEARS": {
+			return {
+				...state,
+				allYears: action.payload
 			}
 		}
 		default: {
