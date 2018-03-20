@@ -36,11 +36,12 @@ a{
 	letter-spacing: .02em;
 	text-transform: uppercase;
 	font-family: "HelveticaNeueW01-67MdCn 692710", "HelveticaNeueW01-45Ligh", "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif;
+	float: left;
 }
 
-.filter_header_title_mobile_expand{
-	background-color: #fec92b;
-	color: #615445;
+.filter_label_mobile{
+	float: right;
+	padding-right: 20px;
 }
 
 .filter_header_title_mobile svg{

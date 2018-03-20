@@ -1,4 +1,27 @@
 #result_panel_main_container{
   width:100%;
+  height: 100%;
   background-color:#888888;
+}
+
+#result_header{
+  text-align: left;
+  padding: 30px;
+  padding-bottom: 10px;
+  width: calc(100% - 310px);
+  position: fixed;
+  background-color:#888888;
+}
+
+#result_list{
+  padding-top: 120px;
+}
+
+.result_header_title{
+  color:#ffffff;
+	font-size: 1.5em;
+	letter-spacing: .02em;
+	text-transform: uppercase;
+	margin:0 0 10px;
+	font-family: "HelveticaNeueW01-67MdCn 692710", "HelveticaNeueW01-45Ligh", "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif;
 }
