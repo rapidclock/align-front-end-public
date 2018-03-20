@@ -54,21 +54,25 @@ class StudentFilter extends React.Component {
 			<div id="filter_below_fold">
 				<FilterGroupContainer
 					name="coop_filter_group"
+					all={this.props.displayed.allCoops}
 					title={coop_title}
 					item_arr={coop_arr}
 				/>
 				<FilterGroupContainer
 					name="degree_filter_group"
+					all={this.props.displayed.allDegrees}
 					title={degree_title}
 					item_arr={degree_arr}
 				/>
 				<FilterGroupContainer
 					name="uni_filter_group"
+					all={this.props.displayed.allUniversities}
 					title={uni_title}
 					item_arr={uni_arr}
 				/>
 				<FilterGroupContainer
 					name="year_filter_group"
+					all={this.props.displayed.allYears}
 					title={year_title}
 					item_arr={year_arr}
 				/>

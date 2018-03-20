@@ -40,6 +40,11 @@ class SearchPage extends Component {
 		var selectedUniversities = {};
 		var selectedYears = {};
 
+		var allCoops = DummyStuff.getAllCoops().coops;
+		var allDegrees = DummyStuff.getAllDegrees().undergraddegrees;
+		var allUniversities = DummyStuff.getAllUniversities().undergradschools;
+		var allYears = DummyStuff.getAllYears().graduationyears;
+
 		var users = DummyStuff.getUsers();
 		////////////////////////////////////////////////////////////
 		//async calls to api go here////async calls to api go here//
@@ -51,6 +56,11 @@ class SearchPage extends Component {
 		store.dispatch(FilterActions.setDisplayedDegrees(displayedDegrees));
 		store.dispatch(FilterActions.setDisplayedUniversities(displayedUniversities));
 		store.dispatch(FilterActions.setDisplayedYears(displayedYears));
+
+		store.dispatch(FilterActions.setAllCoops(allCoops));
+		store.dispatch(FilterActions.setAllDegrees(allDegrees));
+		store.dispatch(FilterActions.setAllUniversities(allUniversities));
+		store.dispatch(FilterActions.setAllYears(allYears));
 	}
 
 	componentWillMount() {

@@ -6,7 +6,8 @@ import * as FilterActions from 'redux/filter_actions';
 const mapStateToProps = (state) => {
     return {
         displayed: state.studentFilter,
-        selected: state.filterGroup
+        selected: state.filterGroup,
+        all: state.all
     }
 }
 
