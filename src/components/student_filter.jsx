@@ -1,7 +1,7 @@
 import React from 'react';
-import FilterGroupContainer from 'containers/filter_group_container'
+import FilterGroupContainer from 'containers/filter_group_container';
 import FilterGroup from 'components/filter_group.jsx';
-import 'css/StudentFilter.css'
+import 'css/StudentFilter.css';
 
 class StudentFilter extends React.Component {
 	constructor(props){

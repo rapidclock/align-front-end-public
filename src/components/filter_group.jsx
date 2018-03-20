@@ -1,6 +1,7 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
 
+import AutoSuggestTheme from 'css/AutoSuggestTheme.css';
 
 const suggestions = ["Dell", "HP", "Reddit", "Amazon"];
 
@@ -209,6 +210,7 @@ class FilterGroup extends React.Component {
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
+        theme={AutoSuggestTheme}
       />
 		);
 
