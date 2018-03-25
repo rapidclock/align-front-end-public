@@ -46,12 +46,6 @@ class ResultPanel extends React.Component {
 					</div>
 				) : (
 					<div>
-						<div id="result_header">
-							<a className="result_header_title">
-								Students Like Me <br />Search Results
-							</a>
-							<hr />
-						</div>
 						<div id="result_list">
 							{resultArr.map(function(listValue, index){
 								return (
