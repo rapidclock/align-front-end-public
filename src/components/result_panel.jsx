@@ -36,7 +36,7 @@ class ResultPanel extends React.Component {
 						{resultArr.map(function(listValue, index){
 							return (
 								<StudentResult
-									key={index]
+									key={index}
 									name={listValue.name}
 									coop={listValue.coop}
 									undergrad={listValue.undergrad}
