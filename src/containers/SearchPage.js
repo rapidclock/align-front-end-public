@@ -22,6 +22,8 @@ class SearchPage extends Component {
 		this.state = {
 			width: window.innerWidth,
 		};
+
+		//console.log(document.getElementById("chatbot"));
 	}
 
 	getData(){
@@ -115,7 +117,7 @@ class SearchPage extends Component {
 					id="chatbot"
 					width="350"
 					height="430"
-					src="https://console.dialogflow.com/api-client/demo/embedded/huskyalignbot">
+					src="https://console.dialogflow.com/api-client/demo/embedded/align-bot-test-web-demo">
 				</iframe>
 			</div>
 		);
