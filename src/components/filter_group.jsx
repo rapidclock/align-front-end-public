@@ -86,7 +86,6 @@ class FilterGroup extends React.Component {
 
 		// updates state for React updates
 		this.setState({
-			labels: labels,
 			checked: checked
 		});
 
