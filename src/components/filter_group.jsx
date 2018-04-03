@@ -65,9 +65,6 @@ class FilterGroup extends React.Component {
 	handleClick(event) {
 		if(event.target.id === "addbutton"){
 			this.setState({
-				title: this.state.title,
-				labels: this.state.labels,
-				checked: this.state.checked,
 				searchBar: !this.state.searchBar
 			});
 		}
