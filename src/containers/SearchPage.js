@@ -111,6 +111,12 @@ class SearchPage extends Component {
 						<Footer />
 					</div>
 				</div>
+				<iframe
+					id="chatbot"
+					width="350"
+					height="430"
+					src="https://console.dialogflow.com/api-client/demo/embedded/huskyalignbot">
+				</iframe>
 			</div>
 		);
 

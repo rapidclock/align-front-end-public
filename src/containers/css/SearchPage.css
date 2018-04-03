@@ -37,3 +37,12 @@ div#result_panel_mobile{
   text-align: center;
 	background-color: #88888;
 }
+
+#chatbot {
+    position: fixed; /* Sit on top of the page content */
+    display: block;
+    right: 0;
+    bottom: 0;
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
