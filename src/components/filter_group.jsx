@@ -64,8 +64,8 @@ class FilterGroup extends React.Component {
 
 	handleClick(event) {
 		if(event.target.id === "addbutton"){
-			this.setState({
-				searchBar: !this.state.searchBar
+			this.setState((prevState) => {
+				searchBar: !prevState.searchBar
 			});
 		}
 	}
@@ -84,7 +84,6 @@ class FilterGroup extends React.Component {
 
 		// updates state for React updates
 		this.setState({
-			title: this.state.title,
 			labels: labels,
 			checked: checked
 		});
@@ -152,9 +151,6 @@ class FilterGroup extends React.Component {
 
 	onChange = (event, { newValue }) => {
     this.setState({
-    	title: this.state.title,
-			labels: this.state.labels,
-			checked: this.state.checked,
 			value: newValue
     });
   };
@@ -163,9 +159,6 @@ class FilterGroup extends React.Component {
 	// You already implemented this logic above, so just use it.
 	onSuggestionsFetchRequested = ({ value }) => {
 		this.setState({
-			title: this.state.title,
-			labels: this.state.labels,
-			checked: this.state.checked,
 			suggestions: getSuggestions(value)
 		});
 	};
@@ -173,19 +166,16 @@ class FilterGroup extends React.Component {
 	// Autosuggest will call this function every time you need to clear suggestions.
 	onSuggestionsClearRequested = () => {
 		this.setState({
-			title: this.state.title,
-			labels: this.state.labels,
-			checked: this.state.checked,
 			suggestions: []
 		});
 	};
 
 	onSuggestionSelected = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method })  => {
-		this.setState({
-			title: this.state.title,
-			labels: this.state.labels.push(suggestion),
-			checked: this.state.checked,
-			searchBar: false
+		this.setState((prevState) => {
+			return{
+				labels: prevState.labels.push(suggestion),
+				searchBar: false
+			}
 		});
 	}
 
