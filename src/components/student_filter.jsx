@@ -28,8 +28,10 @@ class StudentFilter extends React.Component {
 	}
 
 	handleExpand() {
-		this.setState({
-			isExpand: !this.state.isExpand,
+		this.setState((prevState) => {
+			return ({
+				isExpand: !prevState.isExpand
+			});
 		});
 	}
 

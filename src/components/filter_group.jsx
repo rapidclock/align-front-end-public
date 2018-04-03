@@ -65,7 +65,9 @@ class FilterGroup extends React.Component {
 	handleClick(event) {
 		if(event.target.id === "addbutton"){
 			this.setState((prevState) => {
-				searchBar: !prevState.searchBar
+				return ({
+					searchBar: !prevState.searchBar
+				});
 			});
 		}
 	}
@@ -172,10 +174,10 @@ class FilterGroup extends React.Component {
 
 	onSuggestionSelected = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method })  => {
 		this.setState((prevState) => {
-			return{
+			return ({
 				labels: prevState.labels.push(suggestion),
 				searchBar: false
-			}
+			});
 		});
 	}
 
