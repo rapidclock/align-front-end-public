@@ -3,9 +3,6 @@ import StudentResult from 'components/student_result.jsx';
 import 'css/ResultPanel.css';
 
 class ResultPanel extends React.Component {
-	constructor(props){
-		super(props);
-	}
 
 	getResultList(){
 		//placeholder code

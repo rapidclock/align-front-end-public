@@ -15,7 +15,7 @@ export default function filterGroupReducer( state = {
 		case "REMOVE_SELECTED_COOP": {
 			return {
 				...state,
-				selectedCoops: state.selectedCoops.filter(coop => coop != action.payload)
+				selectedCoops: state.selectedCoops.filter(coop => coop !== action.payload)
 			}
 		}
 		case "ADD_SELECTED_DEGREE": {
@@ -27,7 +27,7 @@ export default function filterGroupReducer( state = {
 		case "REMOVE_SELECTED_DEGREE": {
 			return {
 				...state,
-				selectedDegrees: state.selectedDegrees.filter(degree => degree != action.payload)
+				selectedDegrees: state.selectedDegrees.filter(degree => degree !== action.payload)
 			}
 		}
 		case "ADD_SELECTED_UNIVERSITY": {
@@ -39,7 +39,7 @@ export default function filterGroupReducer( state = {
 		case "REMOVE_SELECTED_UNIVERSITY": {
 			return {
 				...state,
-				selectedUniversities: state.selectedUniversities.filter(university => university != action.payload)
+				selectedUniversities: state.selectedUniversities.filter(university => university !== action.payload)
 			}
 		}
 		case "ADD_SELECTED_YEAR": {
@@ -51,7 +51,7 @@ export default function filterGroupReducer( state = {
 		case "REMOVE_SELECTED_YEAR": {
 			return {
 				...state,
-				selectedYears: state.selectedYears.filter(year => year != action.payload)
+				selectedYears: state.selectedYears.filter(year => year !== action.payload)
 			}
 		}
 		default: {

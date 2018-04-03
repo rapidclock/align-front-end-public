@@ -29,15 +29,24 @@ class FilterGroup extends React.Component {
 	constructor(props) {
 		super(props);
 
+		let checked;
+
 		switch(this.props.title){
 			case "Coop":
-				var checked = this.props.selected.selectedCoops;
+				checked = this.props.selected.selectedCoops;
+				break;
 			case "Degree Subject":
-				var checked = this.props.selected.selectedDegrees;
+				checked = this.props.selected.selectedDegrees;
+				break;
 			case "Undergraduate University":
-				var checked = this.props.selected.selectedUniversities;
+				checked = this.props.selected.selectedUniversities;
+				break;
 			case "Year":
-				var checked = this.props.selected.selectedYears;	
+				checked = this.props.selected.selectedYears;
+				break;
+			default:
+				checked = "error";
+				break;
 		}
 
 		this.state = {
@@ -54,7 +63,7 @@ class FilterGroup extends React.Component {
 	}
 
 	handleClick(event) {
-		if(event.target.id == "addbutton"){
+		if(event.target.id === "addbutton"){
 			this.setState({
 				title: this.state.title,
 				labels: this.state.labels,
@@ -65,8 +74,6 @@ class FilterGroup extends React.Component {
 	}
 
 	handleChange(event) {
-		var store = this.props.store;
-
 		var checked = this.state.checked;
 		var labels = this.state.labels;
 
@@ -120,6 +127,9 @@ class FilterGroup extends React.Component {
 				else {
 					this.props.removeSelectedYear(selectedItem);
 				}
+				break;
+			default:
+				console.log("error");
 				break;
 		}
 	}

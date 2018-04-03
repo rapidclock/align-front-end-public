@@ -20,7 +20,7 @@ class StudentResult extends React.Component {
 		return(
 			<div id="student_result_container">
 				<div id="student_above_fold">
-					<img className="profile_picture" src={ProfilePlaceholder}></img>
+					<img className="profile_picture" alt="" src={ProfilePlaceholder}></img>
 					<br/>
 					<a className="student_name"> {this.state.name}
 					</a>
