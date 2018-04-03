@@ -19,6 +19,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "jest": "^22.4.3",
     "react-autosuggest": "^9.3.4"
   }
 }
