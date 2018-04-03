@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import Footer from  'components/footer.jsx';
-import StudentResult from 'components/student_result.jsx';
 import StudentFilterContainer from 'containers/student_filter_container.js';
 import ResultPanel from 'components/result_panel.jsx';
-import Header from 'components/header.jsx';
 
 import * as FilterActions from 'redux/filter_actions';
 

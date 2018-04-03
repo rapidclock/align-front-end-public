@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import FilterGroup from 'components/filter_group'
 import { connect } from 'react-redux';
 import * as FilterActions from 'redux/filter_actions';

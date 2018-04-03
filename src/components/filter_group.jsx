@@ -29,15 +29,24 @@ class FilterGroup extends React.Component {
 	constructor(props) {
 		super(props);
 
+		let checked;
+
 		switch(this.props.title){
 			case "Coop":
-				var checked = this.props.selected.selectedCoops;
+				checked = this.props.selected.selectedCoops;
+				break;
 			case "Degree Subject":
-				var checked = this.props.selected.selectedDegrees;
+				checked = this.props.selected.selectedDegrees;
+				break;
 			case "Undergraduate University":
-				var checked = this.props.selected.selectedUniversities;
+				checked = this.props.selected.selectedUniversities;
+				break;
 			case "Year":
-				var checked = this.props.selected.selectedYears;	
+				checked = this.props.selected.selectedYears;
+				break;
+			default:
+				checked = "error";
+				break;
 		}
 
 		this.state = {
@@ -54,19 +63,16 @@ class FilterGroup extends React.Component {
 	}
 
 	handleClick(event) {
-		if(event.target.id == "addbutton"){
-			this.setState({
-				title: this.state.title,
-				labels: this.state.labels,
-				checked: this.state.checked,
-				searchBar: !this.state.searchBar
+		if(event.target.id === "addbutton"){
+			this.setState((prevState) => {
+				return ({
+					searchBar: !prevState.searchBar
+				});
 			});
 		}
 	}
 
 	handleChange(event) {
-		var store = this.props.store;
-
 		var checked = this.state.checked;
 		var labels = this.state.labels;
 
@@ -80,8 +86,6 @@ class FilterGroup extends React.Component {
 
 		// updates state for React updates
 		this.setState({
-			title: this.state.title,
-			labels: labels,
 			checked: checked
 		});
 
@@ -121,6 +125,9 @@ class FilterGroup extends React.Component {
 					this.props.removeSelectedYear(selectedItem);
 				}
 				break;
+			default:
+				console.log("error");
+				break;
 		}
 	}
 
@@ -145,9 +152,6 @@ class FilterGroup extends React.Component {
 
 	onChange = (event, { newValue }) => {
     this.setState({
-    	title: this.state.title,
-			labels: this.state.labels,
-			checked: this.state.checked,
 			value: newValue
     });
   };
@@ -156,9 +160,6 @@ class FilterGroup extends React.Component {
 	// You already implemented this logic above, so just use it.
 	onSuggestionsFetchRequested = ({ value }) => {
 		this.setState({
-			title: this.state.title,
-			labels: this.state.labels,
-			checked: this.state.checked,
 			suggestions: getSuggestions(value)
 		});
 	};
@@ -166,19 +167,16 @@ class FilterGroup extends React.Component {
 	// Autosuggest will call this function every time you need to clear suggestions.
 	onSuggestionsClearRequested = () => {
 		this.setState({
-			title: this.state.title,
-			labels: this.state.labels,
-			checked: this.state.checked,
 			suggestions: []
 		});
 	};
 
 	onSuggestionSelected = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method })  => {
-		this.setState({
-			title: this.state.title,
-			labels: this.state.labels.push(suggestion),
-			checked: this.state.checked,
-			searchBar: false
+		this.setState((prevState) => {
+			return ({
+				labels: prevState.labels.push(suggestion),
+				searchBar: false
+			});
 		});
 	}
 

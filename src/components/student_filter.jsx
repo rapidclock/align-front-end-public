@@ -1,6 +1,5 @@
 import React from 'react';
 import FilterGroupContainer from 'containers/filter_group_container';
-import FilterGroup from 'components/filter_group.jsx';
 import 'css/StudentFilter.css';
 
 class StudentFilter extends React.Component {
@@ -29,8 +28,10 @@ class StudentFilter extends React.Component {
 	}
 
 	handleExpand() {
-		this.setState({
-			isExpand: !this.state.isExpand,
+		this.setState((prevState) => {
+			return ({
+				isExpand: !prevState.isExpand
+			});
 		});
 	}
 

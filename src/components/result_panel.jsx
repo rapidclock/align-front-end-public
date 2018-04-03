@@ -3,9 +3,6 @@ import StudentResult from 'components/student_result.jsx';
 import 'css/ResultPanel.css';
 
 class ResultPanel extends React.Component {
-	constructor(props){
-		super(props);
-	}
 
 	getResultList(){
 		//placeholder code
@@ -36,6 +33,7 @@ class ResultPanel extends React.Component {
 						{resultArr.map(function(listValue, index){
 							return (
 								<StudentResult
+									key={index}
 									name={listValue.name}
 									coop={listValue.coop}
 									undergrad={listValue.undergrad}
@@ -50,6 +48,7 @@ class ResultPanel extends React.Component {
 							{resultArr.map(function(listValue, index){
 								return (
 									<StudentResult
+										key={index}
 										name={listValue.name}
 										coop={listValue.coop}
 										undergrad={listValue.undergrad}
