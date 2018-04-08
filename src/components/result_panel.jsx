@@ -91,11 +91,11 @@ class ResultPanel extends React.Component {
       );
     }));
 		const shownPagination = (
-			<div id='page-numbers'>
+			<ul id='page-numbers'>
 				{prev}
 				{numbers}
 				{next}
-			</div>
+			</ul>
 		);
 		return shownPagination;
 	}
