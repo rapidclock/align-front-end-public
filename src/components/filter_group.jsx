@@ -1,32 +1,6 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
 
-import AutoSuggestTheme from 'css/AutoSuggestTheme.css';
-
-/*
-var suggestions = ["test"];
-
-// how to complete autosuggest
-var getSuggestions = value => {
-	const inputValue = value.trim().toLowerCase();
-	const inputLength = inputValue.length;
-
-	return inputLength === 0 ? [] : suggestions.filter(sugg =>
-		sugg.toLowerCase().slice(0, inputLength) === inputValue
-	);
-}
-
-// when suggestion is clicked
-var getSuggestionValue = suggestion => suggestion;
-
-var renderSuggestion = suggestion => (
-	<div>
-		{suggestion}
-	</div>
-);
-*/
-
-
 class FilterGroup extends React.Component {
 	constructor(props) {
 		console.log("created");
@@ -62,6 +36,8 @@ class FilterGroup extends React.Component {
 		let suggestions = newProps.all_items;
 
 		suggestions = suggestions.filter(function(e){return this.indexOf(e)<0;},displayed);
+
+		suggestions = suggestions.sort();
 
 		if(this.props !== newProps){
 			console.log(newProps, "new props - update");
@@ -212,12 +188,18 @@ class FilterGroup extends React.Component {
 
 		console.log(inputLength, "length");
 
-		return inputLength === 0 ? [] : suggestions.filter(sugg =>
+		return inputLength === 0 ? suggestions : suggestions.filter(sugg =>
 			sugg.toLowerCase().slice(0, inputLength) === inputValue
 		);
 	}
 
-	getSuggestionValue = suggestion => suggestion;
+	getSuggestionValue(suggestion) {
+  	return suggestion.name;
+	}
+
+	shouldRenderSuggestions() {
+  	return true;
+	}
 
 	renderSuggestion = suggestion => (
 		<div>
@@ -236,16 +218,72 @@ class FilterGroup extends React.Component {
 		var suggestions = this.state.suggestions;
 
 		var inputProps = {
-      placeholder: 'Search',
+      placeholder: 'Search for more',
       value,
       onChange: this.onChange
     };
 
 		var addSection = (
-			<a id="addbutton" onClick={clickHandler}>+ Add</a>
+			<a id="addbutton" href="#" onClick={clickHandler}>+Add</a>
 		);
 
 		console.log(this.state.suggestions, "suggestions");
+
+		const theme = {
+		  container: {
+		    position: 'relative'
+		  },
+		  input: {
+		  	padding: '10px',
+		  	margin: '5px',
+		    width: '-webkit-fill-available',
+		    border: '3px solid green',
+		    fontFamily: 'Helvetica, sans-serif',
+		    fontSize: 12,
+		    border: '1px solid #aaa',
+		    borderTopLeftRadius: 4,
+		    borderTopRightRadius: 4,
+		    borderBottomLeftRadius: 4,
+		    borderBottomRightRadius: 4,
+		  },
+		  inputFocused: {
+		    outline: 'none'
+		  },
+		  inputOpen: {
+		    borderBottomLeftRadius: 0,
+		    borderBottomRightRadius: 0
+		  },
+		  suggestionsContainer: {
+		  	padding: '5px',
+		    display: 'none'
+		  },
+		  suggestionsContainerOpen: {
+		    display: 'block',
+		    position: 'absolute',
+		    top: 34,
+		    margin: '5px',
+		    width: '-webkit-fill-available',
+		    border: '1px solid #aaa',
+		    backgroundColor: '#fff',
+		    fontFamily: 'Helvetica, sans-serif',
+		    fontSize: 12,
+		    borderBottomLeftRadius: 4,
+		    borderBottomRightRadius: 4,
+		    zIndex: 2
+		  },
+		  suggestionsList: {
+		    margin: 0,
+		    padding: 0,
+		    listStyleType: 'none',
+		  },
+		  suggestion: {
+		    cursor: 'pointer',
+		    padding: '5px 5px'
+		  },
+		  suggestionHighlighted: {
+		    backgroundColor: '#ddd'
+		  }
+		};
 
 		var searchBar = (
 			<Autosuggest
@@ -254,11 +292,14 @@ class FilterGroup extends React.Component {
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
         onSuggestionSelected={this.onSuggestionSelected}
         getSuggestionValue={this.getSuggestionValue}
+        shouldRenderSuggestions={this.shouldRenderSuggestions}
         renderSuggestion={this.renderSuggestion}
         inputProps={inputProps}
-        theme={AutoSuggestTheme}
+        theme={theme}
       />
 		);
+
+		console.log(searchBar);
 
 		console.log(itemArr, "itemArr");
 
@@ -283,7 +324,9 @@ class FilterGroup extends React.Component {
 						);
 					})
 				}
-				{this.state.searchBar ? searchBar : addSection}
+					<div className="checkBoxItem">
+						{this.state.searchBar ? searchBar : addSection}
+					</div>
 				</div>
 			</div>
 		);
