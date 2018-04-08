@@ -33,22 +33,18 @@ class ResultPanel extends React.Component {
 	}
 
 	handleChangePage(event) {
-		console.log(event.target.id);
-
     this.setState({
       currentPage: Number(event.target.id),
     });
   }
 
 	getCurrentResultList(currentPage, resultsPerPage) {
-		var resultArr = this.getResultList();
+		const resultArr = this.getResultList();
 		const indexOfLastResult = currentPage * resultsPerPage;
 	  const indexOfFirstResult = indexOfLastResult - resultsPerPage;
 	  const currentResults = resultArr.slice(indexOfFirstResult, indexOfLastResult);
-		console.log(indexOfFirstResult);
 
 		return currentResults.map(function(listValue, index){
-			console.log(listValue);
 			return (
 				<StudentResult
 					name={listValue.name}
@@ -60,18 +56,30 @@ class ResultPanel extends React.Component {
 		})
 	}
 
-	render() {
-		var resultArr = this.getResultList();
-		const {isMobile} = this.props;
-		const {resultsPerPage, currentPage} = this.state;
-		console.log('render' + currentPage);
-
-		const pageNumbers = [];
-	  for (let i = 1; i <= Math.ceil(resultArr.length / resultsPerPage); i++) {
-		  pageNumbers.push(i);
-	  }
-
-		const renderPageNumbers = pageNumbers.map(number => {
+	getPageNumbers(currentPage, pageNumbers, totalPages) {
+		const PREV_ID = -1;
+		const NEXT_ID = -2;
+		const PAGE_COUNT = 9;
+		const prev = (
+			<li
+				key={PREV_ID}
+				id={Math.max(1, Number(currentPage) - 1)}
+				onClick={this.handleChangePage}>
+				Prev
+			</li>
+		);
+		const next = (
+			<li
+				key={NEXT_ID}
+				id={Math.min(Number(currentPage) + 1, totalPages)}
+				onClick={this.handleChangePage}>
+				Next
+			</li>
+		);
+		const pageBefore = Math.max(1, currentPage - 4);
+		const pageAfter = Math.min(totalPages, PAGE_COUNT + pageBefore);
+		const selectedNumbers = pageNumbers.slice(pageBefore-1, pageAfter-1);
+		const numbers = (selectedNumbers.map(number => {
       return (
         <li
           key={number}
@@ -81,49 +89,46 @@ class ResultPanel extends React.Component {
           {number}
         </li>
       );
-    });
+    }));
+		const shownPagination = (
+			<div id='page-numbers'>
+				{prev}
+				{numbers}
+				{next}
+			</div>
+		);
+		return shownPagination;
+	}
 
-		// const renderCurrentStudentList = this.getCurrentResultList(currentPage, resultsPerPage);
+	render() {
+		var resultArr = this.getResultList();
+		const {isMobile} = this.props;
+		const {resultsPerPage, currentPage} = this.state;
 
-		const indexOfLastResult = currentPage * resultsPerPage;
-	  const indexOfFirstResult = indexOfLastResult - resultsPerPage;
-	  const currentResults = resultArr.slice(indexOfFirstResult, indexOfLastResult);
-		console.log(currentResults);
-		const renderCurrentStudentList = currentResults.map(function(listValue, index){
-			return (
-				<StudentResult
-					name={listValue.name}
-					coop={listValue.coop}
-					undergrad={listValue.undergrad}
-					location={listValue.location}
-					year={listValue.year}/>
-			);
-		})
+		const pageNumbers = [];
+		const totalPages = Math.ceil(resultArr.length / resultsPerPage);
+	  for (let i = 1; i <= totalPages; i++) {
+		  pageNumbers.push(i);
+	  }
 
-		const renderStudentList = resultArr.map(function(listValue, index){
-			return (
-				<StudentResult
-					name={listValue.name}
-					coop={listValue.coop}
-					undergrad={listValue.undergrad}
-					location={listValue.location}
-					year={listValue.year}/>
-			);
-		})
+		const renderPageNumbers = this.getPageNumbers(currentPage, pageNumbers, totalPages);
+
+		const renderCurrentStudentList = this.getCurrentResultList(currentPage, resultsPerPage);
 
 		return(
 			<div id="result_panel_main_container">
 				{isMobile ? (
 					<div>
-						{renderStudentList}
+						{renderCurrentStudentList}
 					</div>
 				) : (
 					<div>
 						<div id="result_list">
-							{renderStudentList}
+							{renderCurrentStudentList}
 						</div>
 					</div>
 				)}
+				{renderPageNumbers}
 			</div>
 		);
 	}

@@ -5,13 +5,16 @@
 }
 
 #page-numbers {
+  padding-top: 20px;
+  padding-bottom: 20px;
   list-style: none;
   display: flex;
+  /* margin-left: 100px; */
+  margin: auto;
 }
 
 #page-numbers > li {
   margin-right: 0.3em;
-  color: blue;
-  user-select: none;
+  color: #7d2727;
   cursor: pointer;
 }
