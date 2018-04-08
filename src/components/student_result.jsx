@@ -5,15 +5,6 @@ import 'css/StudentResult.css';
 class StudentResult extends React.Component {
 	constructor(props){
 		super(props);
-
-		// this.state = {
-		// 	name:this.props.name,
-		// 	image:ProfilePlaceholder,
-		// 	coop:this.props.coop,
-		// 	undergrad:this.props.undergrad,
-		// 	location:this.props.location,
-		// 	year:this.props.year
-		// };
 	}
 
 	render() {
