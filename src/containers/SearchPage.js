@@ -6,16 +6,20 @@ import ResultPanel from 'components/result_panel.jsx';
 import * as FilterActions from 'redux/filter_actions';
 
 import * as DummyStuff from 'containers/dummy_data.js';
+import axios from 'axios';
 
 import 'css/SearchPage.css';
 
 const MOBILE_VIEW_WIDTH = 600;
 
+const config  = {
+	timeout: 1000,
+	"Content-Type": "application/json"
+}
+
 class SearchPage extends Component {
 	constructor(props) {
 		super(props);
-
-		console.log(this.state);
 
 		this.getData();
 
@@ -27,6 +31,8 @@ class SearchPage extends Component {
 	}
 
 	getData(){
+		const store = this.props.store;
+
 		////////////////////////////////////////////////////////////
 		//async calls to api go here////async calls to api go here//
 		////////////////////////////////////////////////////////////
@@ -40,7 +46,7 @@ class SearchPage extends Component {
 		var selectedUniversities = {};
 		var selectedYears = {};
 
-		var allCoops = DummyStuff.getAllCoops().coops;
+		let allCoops = DummyStuff.getAllCoops().coops;
 		var allDegrees = DummyStuff.getAllDegrees().undergraddegrees;
 		var allUniversities = DummyStuff.getAllUniversities().undergradschools;
 		var allYears = DummyStuff.getAllYears().graduationyears;
@@ -50,18 +56,129 @@ class SearchPage extends Component {
 		//async calls to api go here////async calls to api go here//
 		////////////////////////////////////////////////////////////
 
-		const store = this.props.store;
+		var results = "4";
 
-		store.dispatch(FilterActions.setDisplayedCoops(displayedCoops));
-		store.dispatch(FilterActions.setDisplayedDegrees(displayedDegrees));
-		store.dispatch(FilterActions.setDisplayedUniversities(displayedUniversities));
-		store.dispatch(FilterActions.setDisplayedYears(displayedYears));
+		axios({
+			method:'post',
+			data: results,
+			url:'http://129.10.111.210:8080/undergradschools',
+			headers: { 
+        'Content-Type': 'text/plain' 
+      }
+		})
+		.then(function(response) {
+			store.dispatch(FilterActions.setDisplayedUniversities(response.data));
+			console.log(response, "top schools");
+		})
+		.catch(function (error) {
+			console.log(error, " top schools error");
+		});
 
-		store.dispatch(FilterActions.setAllCoops(allCoops));
-		store.dispatch(FilterActions.setAllDegrees(allDegrees));
-		store.dispatch(FilterActions.setAllUniversities(allUniversities));
-		store.dispatch(FilterActions.setAllYears(allYears));
+		axios({
+			method:'post',
+			data: results,
+			url:'http://129.10.111.210:8080/coops',
+			headers: { 
+        'Content-Type': 'text/plain' 
+      }
+		})
+		.then(function(response) {
+			store.dispatch(FilterActions.setDisplayedCoops(response.data));
+			console.log(response, "top coops");
+		})
+		.catch(function (error) {
+			console.log(error, " top coops error");
+		});
+
+		axios({
+			method:'post',
+			data: results,
+			url:'http://129.10.111.210:8080/undergradmajors',
+			headers: { 
+        'Content-Type': 'text/plain' 
+      }
+		})
+		.then(function(response) {
+			store.dispatch(FilterActions.setDisplayedDegrees(response.data));
+			console.log(response, "top undergradmajors");
+		})
+		.catch(function (error) {
+			console.log(error, " top majors error");
+		});
+
+		axios({
+			method:'post',
+			data: results,
+			url:'http://129.10.111.210:8080/graduationyears',
+			headers: { 
+        'Content-Type': 'text/plain' 
+      }
+		})
+		.then(function(response) {
+			store.dispatch(FilterActions.setDisplayedYears(response.data));
+			console.log(response, "top graduationyears");
+		})
+		.catch(function (error) {
+			console.log(error, " top graduationyears error");
+		});
+
+
+		axios.get('http://129.10.111.210:8080/undergradschools', config)
+		.then(function (response) {
+			console.log(response, "all schools");
+			store.dispatch(FilterActions.setAllUniversities(response.data));
+		})
+		.catch(function (error) {
+			console.log(error, "all schools");
+		});
+
+		axios.get('http://129.10.111.210:8080/coops', config)
+		.then(function (response) {
+			console.log(response, "all coops");
+			store.dispatch(FilterActions.setAllCoops(response.data));
+		})
+		.catch(function (error) {
+			console.log(error, "all coops");
+		});
+
+		axios.get('http://129.10.111.210:8080/undergradmajors', config)
+		.then(function (response) {
+			console.log(response, "all majors");
+			store.dispatch(FilterActions.setAllDegrees(response.data));
+		})
+		.catch(function (error) {
+			console.log(error, "all degrees");
+		});
+
+		axios.get('http://129.10.111.210:8080/graduationyears', config)
+		.then(function (response) {
+			console.log(response, "all years");
+			store.dispatch(FilterActions.setAllYears(response.data));
+		})
+		.catch(function (error) {
+			console.log(error, "all years");
+		});
 	}
+
+
+	/*
+	getTopSchools(){
+		return axios.post('http://asd2.ccs.neu.edu:8080/top-undergradschools',{},config);
+	}
+
+	getTopCoops(){
+		return axios.post('http://asd2.ccs.neu.edu:8080/top-coops',{},config);
+	}
+
+	getTopDegrees(){
+		return axios.post('http://asd2.ccs.neu.edu:8080/top-undergraddegrees',{},config);
+	}
+
+	getTopYears(){
+		return axios.post('http://asd2.ccs.neu.edu:8080/top-graduationyears',{},config);
+	}
+	*/
+
 
 	componentWillMount() {
 		window.addEventListener('resize', this.handleWindowSizeChange);

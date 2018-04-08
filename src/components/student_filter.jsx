@@ -38,49 +38,46 @@ class StudentFilter extends React.Component {
 	render(){
 		var submitHandler = this.handleSubmit;
 
-		const {isMobile} = this.props;
+		const isMobile = this.props.isMobile;
+
 		//placeholder code
 		var coop_title = "Coop";
 		var degree_title = "Degree Subject";
 		var uni_title = "Undergraduate University";
 		var year_title = "Year";
 
-		var coop_arr = this.props.displayed.displayedCoops;
-		var degree_arr = this.props.displayed.displayedDegrees;
-		var uni_arr = this.props.displayed.displayedUniversities;
-		var year_arr = this.props.displayed.displayedYears;
+		console.log("new filters 1");
 
-
-		const filterContent = (
+		var filterContent = (
 			<div id="filter_below_fold">
 				<FilterGroupContainer
 					name="coop_filter_group"
-					all={this.props.displayed.allCoops}
 					title={coop_title}
-					item_arr={coop_arr}
+					displayed={this.props.displayed.displayedCoops}
+					all_items={this.props.displayed.allCoops}
 				/>
 				<FilterGroupContainer
 					name="degree_filter_group"
-					all={this.props.displayed.allDegrees}
 					title={degree_title}
-					item_arr={degree_arr}
+					displayed={this.props.displayed.displayedDegrees}
+					all_items={this.props.displayed.allDegrees}
 				/>
 				<FilterGroupContainer
 					name="uni_filter_group"
-					all={this.props.displayed.allUniversities}
 					title={uni_title}
-					item_arr={uni_arr}
+					displayed={this.props.displayed.displayedUniversities}
+					all_items={this.props.displayed.allUniversities}
 				/>
 				<FilterGroupContainer
 					name="year_filter_group"
-					all={this.props.displayed.allYears}
 					title={year_title}
-					item_arr={year_arr}
+					displayed={this.props.displayed.displayedYears}
+					all_items={this.props.displayed.allYears}
 				/>
 			</div>
 		)
 
-		const mobileView = (
+		var mobileView = (
 			<div id="filter_container_mobile">
 				<div id="filter_above_fold_mobile">
 					{this.state.isExpand ? (
@@ -129,7 +126,7 @@ class StudentFilter extends React.Component {
 			</div>
 		)
 
-		const desktopView = (
+		var desktopView = (
 			<div id="filter_container">
 				<div id="filter_above_fold">
 					<a className="filter_header_title">

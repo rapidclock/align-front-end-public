@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import StudentFilter from 'components/student_filter'
 
 const mapStateToProps = (state) => {
-	console.log(state);
 	return {
 		displayed: state.studentFilter,
 		selected: state.filterGroup

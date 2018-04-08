@@ -3,10 +3,11 @@ import Autosuggest from 'react-autosuggest';
 
 import AutoSuggestTheme from 'css/AutoSuggestTheme.css';
 
-const suggestions = ["Dell", "HP", "Reddit", "Amazon"];
+/*
+var suggestions = ["test"];
 
 // how to complete autosuggest
-const getSuggestions = value => {
+var getSuggestions = value => {
 	const inputValue = value.trim().toLowerCase();
 	const inputLength = inputValue.length;
 
@@ -16,50 +17,62 @@ const getSuggestions = value => {
 }
 
 // when suggestion is clicked
-const getSuggestionValue = suggestion => suggestion;
+var getSuggestionValue = suggestion => suggestion;
 
-const renderSuggestion = suggestion => (
+var renderSuggestion = suggestion => (
 	<div>
 		{suggestion}
 	</div>
 );
+*/
 
 
 class FilterGroup extends React.Component {
 	constructor(props) {
+		console.log("created");
 		super(props);
 
-		let checked;
+		console.log(props, "props");
 
-		switch(this.props.title){
-			case "Coop":
-				checked = this.props.selected.selectedCoops;
-				break;
-			case "Degree Subject":
-				checked = this.props.selected.selectedDegrees;
-				break;
-			case "Undergraduate University":
-				checked = this.props.selected.selectedUniversities;
-				break;
-			case "Year":
-				checked = this.props.selected.selectedYears;
-				break;
-			default:
-				checked = "error";
-				break;
-		}
+		let checked = [];
+		let suggestions = this.props.all_items;
+		let displayed = this.props.displayed;
+		let title = this.props.title;
+
+		suggestions = suggestions.filter(function(e){return this.indexOf(e)<0;},displayed);
 
 		this.state = {
 			title: this.props.title,
-			labels: this.props.item_arr,
+			labels: displayed,
 			checked: checked,
 			searchBar: false,
 			value: '',
-			suggestions: suggestions
+			suggestions: suggestions,
+			all_suggestions: suggestions
 		};
 
 		this.handleClick = this.handleClick.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+	}
+
+	componentWillReceiveProps(newProps){
+		console.log(newProps, "new filters 2");
+		
+		let displayed = newProps.displayed;
+		let suggestions = newProps.all_items;
+
+		suggestions = suggestions.filter(function(e){return this.indexOf(e)<0;},displayed);
+
+		if(this.props !== newProps){
+			console.log(newProps, "new props - update");
+			this.setState((prevState) => {
+				return ({
+					suggestions: suggestions,
+					all_suggestions: suggestions,
+					labels: displayed,
+				});
+			});
+		}
 	}
 
 	handleClick(event) {
@@ -133,6 +146,7 @@ class FilterGroup extends React.Component {
 
 	getFilterItemList() {
 		var size = this.state.labels.length;
+		console.log(this.state, "getting items");
 		var itemArr = new Array(size);
 
 		for(var x = 0; x < size; x++){
@@ -160,57 +174,93 @@ class FilterGroup extends React.Component {
 	// You already implemented this logic above, so just use it.
 	onSuggestionsFetchRequested = ({ value }) => {
 		this.setState({
-			suggestions: getSuggestions(value)
+			suggestions: this.getSuggestions(value)
 		});
 	};
 
 	// Autosuggest will call this function every time you need to clear suggestions.
 	onSuggestionsClearRequested = () => {
 		this.setState({
-			suggestions: []
+			value: ""
 		});
 	};
 
 	onSuggestionSelected = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method })  => {
 		this.setState((prevState) => {
+			var labels = this.state.labels.slice(0);
+			var checked = this.state.checked.slice(0);
+			var all_suggestions = this.state.all_suggestions.slice(0);
+			var index = all_suggestions.indexOf(suggestion);
+			all_suggestions.splice(index, 1);
+			labels.push(suggestion);
+			checked.push(suggestion);
+
 			return ({
-				labels: prevState.labels.push(suggestion),
-				searchBar: false
+				labels: labels,
+				checked: checked,
+				searchBar: false,
+				suggestions: all_suggestions,
+				all_suggestions: all_suggestions
 			});
 		});
 	}
 
+	getSuggestions(value) {
+		const inputValue = value.trim().toLowerCase();
+		const inputLength = inputValue.length;
+		let suggestions = this.state.all_suggestions;
+
+		console.log(inputLength, "length");
+
+		return inputLength === 0 ? [] : suggestions.filter(sugg =>
+			sugg.toLowerCase().slice(0, inputLength) === inputValue
+		);
+	}
+
+	getSuggestionValue = suggestion => suggestion;
+
+	renderSuggestion = suggestion => (
+		<div>
+			{suggestion}
+		</div>
+	);
+
 	render() {
+		console.log(this.state, "rerender");
 		var changeHandler = this.handleChange;
 		var clickHandler = this.handleClick;
 
 		var itemArr = this.getFilterItemList();
 
-		const value = this.state.value;
-		const suggestions = this.state.suggestions;
+		var value = this.state.value;
+		var suggestions = this.state.suggestions;
 
-		const inputProps = {
+		var inputProps = {
       placeholder: 'Search',
       value,
       onChange: this.onChange
     };
 
-		const addSection = (
+		var addSection = (
 			<a id="addbutton" onClick={clickHandler}>+ Add</a>
 		);
 
-		const searchBar = (
+		console.log(this.state.suggestions, "suggestions");
+
+		var searchBar = (
 			<Autosuggest
         suggestions={suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
         onSuggestionSelected={this.onSuggestionSelected}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
+        getSuggestionValue={this.getSuggestionValue}
+        renderSuggestion={this.renderSuggestion}
         inputProps={inputProps}
         theme={AutoSuggestTheme}
       />
 		);
+
+		console.log(itemArr, "itemArr");
 
 		return(
 			<div id="filter_group_container">

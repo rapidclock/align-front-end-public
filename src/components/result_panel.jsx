@@ -24,7 +24,7 @@ class ResultPanel extends React.Component {
 
 	render() {
 		const {isMobile} = this.props;
-		var resultArr = this.getResultList();
+		var resultArr = []
 
 		return(
 			<div id="result_panel_main_container">
