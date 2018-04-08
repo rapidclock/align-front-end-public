@@ -110,9 +110,9 @@ class SearchPage extends Component {
 					</div>
 					<div id="result_panel">
 						<ResultPanel isMobile={isMobile}/>
-						<Footer />
 					</div>
 				</div>
+				<Footer />
 			</div>
 		);
 
