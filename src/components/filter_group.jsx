@@ -16,7 +16,7 @@ class FilterGroup extends React.Component {
 		suggestions = suggestions.filter(function(e){return this.indexOf(e)<0;},displayed);
 
 		this.state = {
-			title: this.props.title,
+			title: title,
 			labels: displayed,
 			checked: checked,
 			searchBar: false,
@@ -224,7 +224,7 @@ class FilterGroup extends React.Component {
     };
 
 		var addSection = (
-			<a id="addbutton" href="#" onClick={clickHandler}>+Add</a>
+			<a id="addbutton" onClick={clickHandler}>+Add</a>
 		);
 
 		console.log(this.state.suggestions, "suggestions");
@@ -237,7 +237,6 @@ class FilterGroup extends React.Component {
 		  	padding: '10px',
 		  	margin: '5px',
 		    width: '-webkit-fill-available',
-		    border: '3px solid green',
 		    fontFamily: 'Helvetica, sans-serif',
 		    fontSize: 12,
 		    border: '1px solid #aaa',

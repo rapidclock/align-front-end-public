@@ -4,8 +4,6 @@ import StudentFilterContainer from 'containers/student_filter_container.js';
 import ResultPanel from 'components/result_panel.jsx';
 
 import * as FilterActions from 'redux/filter_actions';
-
-import * as DummyStuff from 'containers/dummy_data.js';
 import axios from 'axios';
 
 import 'css/SearchPage.css';
@@ -26,37 +24,11 @@ class SearchPage extends Component {
 		this.state = {
 			width: window.innerWidth,
 		};
-
-		//console.log(document.getElementById("chatbot"));
 	}
 
 	getData(){
 		const store = this.props.store;
-
-		////////////////////////////////////////////////////////////
-		//async calls to api go here////async calls to api go here//
-		////////////////////////////////////////////////////////////
-		var displayedCoops = DummyStuff.getTopCoops().coops;
-		var displayedDegrees = DummyStuff.getTopDegrees().undergraddegrees;
-		var displayedUniversities = DummyStuff.getTopUniversities().undergradschools;
-		var displayedYears = DummyStuff.getTopYears().graduationyears;
-
-		var selectedCoops = {};
-		var selectedDegrees = {};
-		var selectedUniversities = {};
-		var selectedYears = {};
-
-		let allCoops = DummyStuff.getAllCoops().coops;
-		var allDegrees = DummyStuff.getAllDegrees().undergraddegrees;
-		var allUniversities = DummyStuff.getAllUniversities().undergradschools;
-		var allYears = DummyStuff.getAllYears().graduationyears;
-
-		var users = DummyStuff.getUsers();
-		////////////////////////////////////////////////////////////
-		//async calls to api go here////async calls to api go here//
-		////////////////////////////////////////////////////////////
-
-		var results = "4";
+		var results = "10";
 
 		axios({
 			method:'post',
@@ -130,16 +102,7 @@ class SearchPage extends Component {
 		})
 		.catch(function (error) {
 			console.log(error, "all schools");
-		});
-
-		axios.get('http://129.10.111.210:8080/coops', config)
-		.then(function (response) {
-			console.log(response, "all coops");
-			store.dispatch(FilterActions.setAllCoops(response.data));
-		})
-		.catch(function (error) {
-			console.log(error, "all coops");
-		});
+		});		
 
 		axios.get('http://129.10.111.210:8080/undergradmajors', config)
 		.then(function (response) {
@@ -158,27 +121,16 @@ class SearchPage extends Component {
 		.catch(function (error) {
 			console.log(error, "all years");
 		});
+
+		axios.get('http://129.10.111.210:8080/coops', config)
+		.then(function (response) {
+			console.log(response, "all coops");
+			store.dispatch(FilterActions.setAllCoops(response.data));
+		})
+		.catch(function (error) {
+			console.log(error, "all coops");
+		});
 	}
-
-
-	/*
-	getTopSchools(){
-		return axios.post('http://asd2.ccs.neu.edu:8080/top-undergradschools',{},config);
-	}
-
-	getTopCoops(){
-		return axios.post('http://asd2.ccs.neu.edu:8080/top-coops',{},config);
-	}
-
-	getTopDegrees(){
-		return axios.post('http://asd2.ccs.neu.edu:8080/top-undergraddegrees',{},config);
-	}
-
-	getTopYears(){
-		return axios.post('http://asd2.ccs.neu.edu:8080/top-graduationyears',{},config);
-	}
-	*/
-
 
 	componentWillMount() {
 		window.addEventListener('resize', this.handleWindowSizeChange);
@@ -231,6 +183,7 @@ class SearchPage extends Component {
 					</div>
 				</div>
 				<iframe
+					title="ask questions"
 					id="chatbot"
 					width="350"
 					height="430"

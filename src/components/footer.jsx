@@ -33,19 +33,19 @@ class Footer extends React.Component {
 			<div id="footer-menu-links-container">
 				<ul id="footer-menu-links">
 					<li id = "menu-item-1">
-						<a href="http://my.northeastern.edu/" target="_blank">myNortheastern</a>
+						<a href="http://my.northeastern.edu/" rel="noopener noreferrer" target="_blank">myNortheastern</a>
 					</li>
 					<li id = "menu-item-2">
-						<a href="https://prod-web.neu.edu/wasapp/employeelookup/public/main.action#_ga=1.152250297.1229401008.1453998512" target="_blank">Find Faculty &amp; Staff</a>
+						<a href="https://prod-web.neu.edu/wasapp/employeelookup/public/main.action#_ga=1.152250297.1229401008.1453998512" rel="noopener noreferrer" target="_blank">Find Faculty &amp; Staff</a>
 					</li>
 					<li id = "menu-item-3">
-						<a href="http://www.northeastern.edu/neuhome/adminlinks/findaz.html" target="_blank">Find A-Z</a>
+						<a href="http://www.northeastern.edu/neuhome/adminlinks/findaz.html" rel="noopener noreferrer" target="_blank">Find A-Z</a>
 					</li>
 					<li id = "menu-item-4">
-						<a href="http://www.northeastern.edu/emergency/index.html" target="_blank">Emergency Information</a>
+						<a href="http://www.northeastern.edu/emergency/index.html" rel="noopener noreferrer" target="_blank">Emergency Information</a>
 					</li>
 					<li id = "menu-item-5">
-						<a href="http://www.northeastern.edu/search/index.html" target="_blank">Search</a>
+						<a href="http://www.northeastern.edu/search/index.html" rel="noopener noreferrer" target="_blank">Search</a>
 					</li>
 				</ul>
 			</div>
@@ -67,7 +67,7 @@ class Footer extends React.Component {
 			<div id='menu-footer-area'>
 				<div id="menu-footer-inner-container">
 					<div id="footer-logo-mobile">
-						<a href="http://www.northeastern.edu/#_ga=2.119727880.1665358915.1519048599-2052624994.1517972325" target="_blank">
+						<a href="http://www.northeastern.edu/#_ga=2.119727880.1665358915.1519048599-2052624994.1517972325" rel="noopener noreferrer" target="_blank">
 							<div id="footer-logo-svg" dangerouslySetInnerHTML={{ __html: svgString}} />
 						</a>
 					</div>
@@ -82,7 +82,7 @@ class Footer extends React.Component {
 			<div id="menu-footer-area">
 				<div id="menu-footer-inner-container">
 					<div id="footer-logo">
-						<a href="http://www.northeastern.edu/#_ga=2.119727880.1665358915.1519048599-2052624994.1517972325" target="_blank">
+						<a href="http://www.northeastern.edu/#_ga=2.119727880.1665358915.1519048599-2052624994.1517972325" rel="noopener noreferrer" target="_blank">
 							<div id="footer-logo-svg" dangerouslySetInnerHTML={{ __html: svgString}} />
 						</a>
 					</div>
