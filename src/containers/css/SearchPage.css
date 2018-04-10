@@ -11,12 +11,14 @@ body{
 }
 
 div#filter_panel{
-  position:fixed;
+	position: sticky;
   left: 0px;
   top:0px;
 	width: 250px;
   margin-bottom: 150px;
   float: left;
+	overflow-y: scroll;
+	height:100vh;
 }
 
 div#filter_panel_mobile{

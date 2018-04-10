@@ -198,6 +198,7 @@ class SearchPage extends Component {
 
 		const desktopView = (
 			<div>
+				<Header />
 				<div id="main_container">
 					<div id="filter_panel">
 						<StudentFilterContainer
