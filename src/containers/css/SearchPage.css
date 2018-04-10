@@ -39,3 +39,7 @@ div#result_panel_mobile{
   text-align: center;
 	background-color: #88888;
 }
+
+.b-agent-demo .server-response {
+	background-color: red;
+}

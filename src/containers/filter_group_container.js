@@ -3,11 +3,7 @@ import { connect } from 'react-redux';
 import * as FilterActions from 'redux/filter_actions';
 
 const mapStateToProps = (state) => {
-    return {
-        displayed: state.studentFilter,
-        selected: state.filterGroup,
-        all: state.all
-    }
+    return { }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -30,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
         removeSelectedUniversity: input => {
             dispatch(FilterActions.removeSelectedUniversity(input));
         },
-        addSelectedear: input => {
+        addSelectedYear: input => {
             dispatch(FilterActions.addSelectedYear(input));
         },
         removeSelectedYear: input => {

@@ -1,10 +1,15 @@
 import React from 'react';
 import FilterGroupContainer from 'containers/filter_group_container';
 import 'css/StudentFilter.css';
+import * as FilterActions from 'redux/filter_actions';
+
+import axios from 'axios';
 
 class StudentFilter extends React.Component {
 	constructor(props){
 		super(props);
+
+		console.log(props, "monkey");
 
 		this.state = {
 			selCoops:'',
@@ -19,8 +24,32 @@ class StudentFilter extends React.Component {
 	}
 
 	handleSubmit(event){
-		this.props.submitHandler();
+		let store = this.props.store;
 
+		var results = 
+		{
+			BeginIndex:0,
+			EndIndex:10000,
+			Coops:this.props.selected.selectedCoops,
+			UndergradDegree:this.props.selected.selectedDegrees,
+			UndergradSchool:this.props.selected.selectedUniversities,
+			GraduationYear:this.props.selected.selectedYears,
+		}
+
+		axios({
+			method:'post',
+			data: results,
+			url:'http://129.10.111.210:8080/students',
+		})
+		.then(function(response) {
+			store.dispatch(FilterActions.setResults(response.data));
+			console.log(response, "results");
+		})
+		.catch(function (error) {
+			console.log(error, "results error");
+		});
+
+		this.props.submitHandler();
 		this.forceUpdate();
 		this.setState({
 			isExpand: false,
@@ -36,51 +65,47 @@ class StudentFilter extends React.Component {
 	}
 
 	render(){
-		var submitHandler = this.handleSubmit;
 
-		const {isMobile} = this.props;
+		console.log(this.props, "proppies");
+		var submitHandler = this.handleSubmit;
+		const isMobile = this.props.isMobile;
+
 		//placeholder code
 		var coop_title = "Coop";
 		var degree_title = "Degree Subject";
 		var uni_title = "Undergraduate University";
 		var year_title = "Year";
 
-		var coop_arr = this.props.displayed.displayedCoops;
-		var degree_arr = this.props.displayed.displayedDegrees;
-		var uni_arr = this.props.displayed.displayedUniversities;
-		var year_arr = this.props.displayed.displayedYears;
-
-
-		const filterContent = (
+		var filterContent = (
 			<div id="filter_below_fold">
 				<FilterGroupContainer
 					name="coop_filter_group"
-					all={this.props.displayed.allCoops}
 					title={coop_title}
-					item_arr={coop_arr}
+					displayed={this.props.displayed.displayedCoops}
+					all_items={this.props.displayed.allCoops}
 				/>
 				<FilterGroupContainer
 					name="degree_filter_group"
-					all={this.props.displayed.allDegrees}
 					title={degree_title}
-					item_arr={degree_arr}
+					displayed={this.props.displayed.displayedDegrees}
+					all_items={this.props.displayed.allDegrees}
 				/>
 				<FilterGroupContainer
 					name="uni_filter_group"
-					all={this.props.displayed.allUniversities}
 					title={uni_title}
-					item_arr={uni_arr}
+					displayed={this.props.displayed.displayedUniversities}
+					all_items={this.props.displayed.allUniversities}
 				/>
 				<FilterGroupContainer
 					name="year_filter_group"
-					all={this.props.displayed.allYears}
 					title={year_title}
-					item_arr={year_arr}
+					displayed={this.props.displayed.displayedYears}
+					all_items={this.props.displayed.allYears}
 				/>
 			</div>
 		)
 
-		const mobileView = (
+		var mobileView = (
 			<div id="filter_container_mobile">
 				<div id="filter_above_fold_mobile">
 					{this.state.isExpand ? (
@@ -129,7 +154,7 @@ class StudentFilter extends React.Component {
 			</div>
 		)
 
-		const desktopView = (
+		var desktopView = (
 			<div id="filter_container">
 				<div id="filter_above_fold">
 					<a className="filter_header_title">
