@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Footer from  'components/footer';
+import Header from 'components/header';
 import StudentFilterContainer from 'containers/student_filter_container';
 import ResultPanelContainer from 'containers/result_panel_container';
 import Chatbot from 'components/chatbot'
