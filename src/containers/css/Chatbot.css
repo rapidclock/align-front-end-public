@@ -1,15 +1,16 @@
 #chatbot-div {
 	position: fixed; /* Sit on top of the page content */
-	display: block;
+	display: table-cell;
+   vertical-align:middle;
 	right: 0;
 	bottom: 0;
 	z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
 	cursor: pointer; /* Add a pointer on hover */
-		text-align: right; 
 }
 
-#chatbot-toggle {
-	display: inline;
-	text-align: right; 
-  justify-content: space-between;
+#chatbot-toggle { 
+	float: top;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 3px;
 }

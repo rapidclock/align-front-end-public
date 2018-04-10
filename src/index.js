@@ -13,7 +13,7 @@ import filterGroupReducer from "redux/filter_group_reducer";
 
 
 //bootstrap styling
-require('bootstrap/dist/css/bootstrap.min.css')
+//require('bootstrap/dist/css/bootstrap.min.css')
 
 require('./index.css')
 

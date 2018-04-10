@@ -19,11 +19,14 @@ class SearchPage extends Component {
 	constructor(props) {
 		super(props);
 
-		this.getData();
-
 		this.state = {
 			width: window.innerWidth,
 		};
+	}
+
+
+	componentDidMount(){
+		this.getData();
 	}
 
 	getData(){

@@ -8,14 +8,13 @@
   text-align: left;
   padding: 30px;
   padding-bottom: 10px;
-  width: calc(100% - 310px);
-  position: fixed;
+  width: 100%;
   background-color:#888888;
 }
 
 #result_list{
   background-color:#ffffff;
-  padding-top: 120px;
+  min-height: 100vh;
 }
 
 .result_header_title{
@@ -25,4 +24,49 @@
 	text-transform: uppercase;
 	margin:0 0 10px;
 	font-family: "HelveticaNeueW01-67MdCn 692710", "HelveticaNeueW01-45Ligh", "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif;
+}
+
+table.paleRedRows {
+  color:#615445;
+	font-size: 0.75em;
+	font-family: "HelveticaNeueW01-67MdCn 692710", "HelveticaNeueW01-45Ligh", "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif;
+  border: 1px solid #F1F1F1;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+table.paleRedRows td, table.paleRedRows th {
+  padding: 5px 2px;
+}
+table.paleRedRows tbody td {
+  font-size: 13px;
+}
+table.paleRedRows thead {
+  background: #CC0000;
+  border-bottom: 5px solid #FFFFFF;
+}
+table.paleRedRows thead th {
+  color:#ffffff;
+	font-size: 1em;
+	font-family: "HelveticaNeueW01-67MdCn 692710", "HelveticaNeueW01-45Ligh", "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif;
+  text-align: center;
+  border-left: 2px solid #FFFFFF;
+}
+table.paleRedRows thead th:first-child {
+  border-left: none;
+}
+table.paleRedRows tbody tr:hover {
+	background-color:#cccccc;
+}
+
+table.paleRedRows tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+  background: #CC7474;
+  border-top: 3px solid #444444;
+}
+table.paleRedRows tfoot td {
+  font-size: 14px;
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Table } from 'reactstrap';
 
 import 'css/ResultPanel.css';
 
@@ -10,7 +9,11 @@ class ResultPanel extends React.Component {
 
 		let isMobile = this.props.isMobile;
 
-		students = students !== undefined ? students : [];
+		let empty = {coop: "No results", undergradschool: "No results", graduationyear: "No results", undergraddegree: "No results"};
+		let loading = {coop: "Loading", undergradschool: "Loading", graduationyear: "Loading", undergraddegree: "Loading"}
+
+		students = students !== undefined ? students : [loading];
+		students = students.length !== 0 ? students : [empty];
 
 		console.log(students, "all the data");
 
@@ -18,7 +21,7 @@ class ResultPanel extends React.Component {
 			<div id="result_panel_main_container">
 				{isMobile ? (
 					<div>
-						<Table>
+						<table class="paleRedRows">
 			        <thead>
 			          <tr>
 			            <th>Coop</th>
@@ -42,7 +45,7 @@ class ResultPanel extends React.Component {
 									})
 			        	}
 			        </tbody>
-			      </Table>
+			      </table>
 					</div>
 				) : (
 					<div>
@@ -53,7 +56,7 @@ class ResultPanel extends React.Component {
 							<hr />
 						</div>
 						<div id="result_list">
-							<Table dark>
+							<table class="paleRedRows">
 				        <thead>
 				          <tr>
 				            <th>Coop</th>
@@ -77,7 +80,7 @@ class ResultPanel extends React.Component {
 										})
 				        	}
 				        </tbody>
-				      </Table>
+				      </table>
 						</div>
 					</div>
 				)}
