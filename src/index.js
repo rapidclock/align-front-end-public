@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
 
-import './index.css';
-
 import SearchPage from './containers/SearchPage';
 
 import registerServiceWorker from './registerServiceWorker';
@@ -12,6 +10,12 @@ import  { createStore, combineReducers } from "redux";
 
 import studentFilterReducer from "redux/student_filter_reducer";
 import filterGroupReducer from "redux/filter_group_reducer";
+
+
+//bootstrap styling
+require('bootstrap/dist/css/bootstrap.min.css')
+
+require('./index.css')
 
 const allReducers = combineReducers({
 	studentFilter: studentFilterReducer,

@@ -1,6 +1,9 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
 
+import { Label, Input, NavLink } from 'reactstrap';
+
+
 class FilterGroup extends React.Component {
 	constructor(props) {
 		console.log("created");
@@ -80,10 +83,13 @@ class FilterGroup extends React.Component {
 
 		var selectedItem = this.state.labels[event.target.name];
 
-		// updates store for Redux updates
+		this.toggleState(selectedItem, event.target.checked);
+	}
+
+	toggleState(selectedItem, checked){
 		switch(this.state.title) {
 			case "Coop":
-				if(event.target.checked){
+				if(checked){
 					this.props.addSelectedCoop(selectedItem);
 				}
 				else {
@@ -91,7 +97,7 @@ class FilterGroup extends React.Component {
 				}
 				break;
 			case "Degree Subject":
-				if(event.target.checked){
+				if(checked){
 					this.props.addSelectedDegree(selectedItem);
 				}
 				else {
@@ -99,7 +105,7 @@ class FilterGroup extends React.Component {
 				}
 				break;
 			case "Undergraduate University":
-				if(event.target.checked){
+				if(checked){
 					this.props.addSelectedUniversity(selectedItem);
 				}
 				else {
@@ -107,7 +113,7 @@ class FilterGroup extends React.Component {
 				}
 				break;
 			case "Year":
-				if(event.target.checked){
+				if(checked){
 					this.props.addSelectedYear(selectedItem);
 				}
 				else {
@@ -171,6 +177,8 @@ class FilterGroup extends React.Component {
 			labels.push(suggestion);
 			checked.push(suggestion);
 
+			this.toggleState(suggestion, checked);
+
 			return ({
 				labels: labels,
 				checked: checked,
@@ -224,7 +232,7 @@ class FilterGroup extends React.Component {
     };
 
 		var addSection = (
-			<a id="addbutton" onClick={clickHandler}>+Add</a>
+			<NavLink id="addbutton" onClick={clickHandler}>+Add</NavLink>
 		);
 
 		console.log(this.state.suggestions, "suggestions");
@@ -304,21 +312,21 @@ class FilterGroup extends React.Component {
 
 		return(
 			<div id="filter_group_container">
-				<a className="filter_group_title">{this.state.title}</a>
+				<Label className="filter_group_title">{this.state.title}</Label>
 				<div id="filter_contents_container"> {
 					itemArr.map(function(listValue, index){
 						return (
 						<div className="checkBoxItem" key={index}>
-								<input
+								<Input
 								name={index}
 								type="checkBox"
 								checked={listValue.checked}
 								onChange={changeHandler}
 								/>
-								<label className="filter_group_label"> {
+								<Label className="filter_group_label"> {
 									listValue.label
 								}
-								</label>
+								</Label>
 						</div>
 						);
 					})

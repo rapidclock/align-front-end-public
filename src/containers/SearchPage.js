@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Footer from  'components/footer.jsx';
-import StudentFilterContainer from 'containers/student_filter_container.js';
-import ResultPanel from 'components/result_panel.jsx';
+import Footer from  'components/footer';
+import StudentFilterContainer from 'containers/student_filter_container';
+import ResultPanelContainer from 'containers/result_panel_container';
+import Chatbot from 'components/chatbot'
 
 import * as FilterActions from 'redux/filter_actions';
 import axios from 'axios';
-
 import 'css/SearchPage.css';
 
 const MOBILE_VIEW_WIDTH = 600;
@@ -28,7 +28,7 @@ class SearchPage extends Component {
 
 	getData(){
 		const store = this.props.store;
-		var results = "10";
+		var results = "4";
 
 		axios({
 			method:'post',
@@ -130,6 +130,29 @@ class SearchPage extends Component {
 		.catch(function (error) {
 			console.log(error, "all coops");
 		});
+
+		results = 
+		{
+			BeginIndex:0,
+			EndIndex:10000,
+			Coops:[],
+			UndergradDegree:[],
+			UndergradSchool:[],
+			GraduationYear:[],
+		}
+
+		axios({
+			method:'post',
+			data: results,
+			url:'http://129.10.111.210:8080/students',
+		})
+		.then(function(response) {
+			store.dispatch(FilterActions.setResults(response.data));
+			console.log(response, "results");
+		})
+		.catch(function (error) {
+			console.log(error, "results error");
+		});
 	}
 
 	componentWillMount() {
@@ -156,11 +179,12 @@ class SearchPage extends Component {
 				<div id="main_container">
 					<div id="filter_panel_mobile">
 						<StudentFilterContainer
+							store={this.props.store}
 							isMobile={isMobile}
 							submitHandler= {this.handleSubmit.bind(this)}/>
 					</div>
 					<div id="result_panel_mobile">
-						<ResultPanel isMobile={isMobile}/>
+						<ResultPanelContainer isMobile={isMobile}/>
 					</div>
 				</div>
 				<div>
@@ -174,21 +198,16 @@ class SearchPage extends Component {
 				<div id="main_container">
 					<div id="filter_panel">
 						<StudentFilterContainer
+							store={this.props.store}
 							isMobile={isMobile}
 							submitHandler= {this.handleSubmit.bind(this)}/>
 					</div>
 					<div id="result_panel">
-						<ResultPanel isMobile={isMobile}/>
+						<ResultPanelContainer isMobile={isMobile}/>
 						<Footer />
+						<Chatbot />
 					</div>
 				</div>
-				<iframe
-					title="ask questions"
-					id="chatbot"
-					width="350"
-					height="430"
-					src="https://console.dialogflow.com/api-client/demo/embedded/align-bot-test-web-demo">
-				</iframe>
 			</div>
 		);
 

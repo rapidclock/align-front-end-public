@@ -110,4 +110,11 @@ export function setAllYears(years) {
 	}
 }
 
+export function setResults(students){
+	return {
+		type: 'SET_RESULTS',
+		payload: students
+	}
+}
+
 

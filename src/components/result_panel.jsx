@@ -1,46 +1,48 @@
 import React from 'react';
-import StudentResult from 'components/student_result.jsx';
+import { Table } from 'reactstrap';
+
 import 'css/ResultPanel.css';
 
 class ResultPanel extends React.Component {
 
-	getResultList(){
-		//placeholder code
-		var size = 2000;
-		var resultArr = new Array(size);
-
-		for(var x = 0; x < size; x++ ){
-			resultArr[x] = new ResultItem(
-				"name" + x,
-				"coop" + x,
-				"undergrad" + x,
-				"location" + x,
-				"year" + x
-			);
-		}
-
-		return resultArr;
-	}
-
 	render() {
-		const {isMobile} = this.props;
-		var resultArr = []
+		let students = this.props.results.students;
+
+		let isMobile = this.props.isMobile;
+
+		students = students !== undefined ? students : [];
+
+		console.log(students, "all the data");
 
 		return(
 			<div id="result_panel_main_container">
 				{isMobile ? (
 					<div>
-						{resultArr.map(function(listValue, index){
-							return (
-								<StudentResult
-									key={index}
-									name={listValue.name}
-									coop={listValue.coop}
-									undergrad={listValue.undergrad}
-									location={listValue.location}
-									year={listValue.year}/>
-							);
-						})}
+						<Table>
+			        <thead>
+			          <tr>
+			            <th>Coop</th>
+			            <th>Undergrad Degree Subject</th>
+			            <th>Undergraduate University</th>
+			            <th>Graduation Year at NEU</th>
+			          </tr>
+			        </thead>
+			        <tbody> 
+			        		
+			        		{
+			        		students.map(function(student){
+										return (
+											<tr>
+												<th>{student.coop}</th>
+												<th>{student.undergraddegree}</th>
+												<th>{student.undergradschool}</th>
+												<th>{student.graduationyear}</th>
+											</tr>
+										);
+									})
+			        	}
+			        </tbody>
+			      </Table>
 					</div>
 				) : (
 					<div>
@@ -51,17 +53,31 @@ class ResultPanel extends React.Component {
 							<hr />
 						</div>
 						<div id="result_list">
-							{resultArr.map(function(listValue, index){
-								return (
-									<StudentResult
-										key={index}
-										name={listValue.name}
-										coop={listValue.coop}
-										undergrad={listValue.undergrad}
-										location={listValue.location}
-										year={listValue.year}/>
-								);
-							})}
+							<Table dark>
+				        <thead>
+				          <tr>
+				            <th>Coop</th>
+				            <th>Undergrad Degree Subject</th>
+				            <th>Undergraduate University</th>
+				            <th>Graduation Year at NEU</th>
+				          </tr>
+				        </thead>
+				        <tbody> 
+				        		
+				        		{
+				        		students.map(function(student){
+											return (
+												<tr>
+													<th>{student.coop}</th>
+													<th>{student.undergraddegree}</th>
+													<th>{student.undergradschool}</th>
+													<th>{student.graduationyear}</th>
+												</tr>
+											);
+										})
+				        	}
+				        </tbody>
+				      </Table>
 						</div>
 					</div>
 				)}
@@ -70,14 +86,5 @@ class ResultPanel extends React.Component {
 	}
 }
 
-class ResultItem {
-	constructor(name, coop, undergrad, location, year) {
-		this.name = name;
-		this.coop = coop;
-		this.undergrad = undergrad;
-		this.location = location;
-		this.year = year;
-	}
-}
 
 export default ResultPanel;

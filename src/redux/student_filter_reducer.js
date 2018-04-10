@@ -7,6 +7,7 @@ export default function studentFilterReducer( state = {
 	allDegrees: [],
 	allUniversities: [],
 	allYears: [],
+	results: [],
 	error: null
 }, action) {
 	switch (action.type) {
@@ -56,6 +57,12 @@ export default function studentFilterReducer( state = {
 			return {
 				...state,
 				allYears: action.payload
+			}
+		}
+		case "SET_RESULTS": {
+			return {
+				...state,
+				results: action.payload
 			}
 		}
 		default: {
