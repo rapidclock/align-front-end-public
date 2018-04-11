@@ -244,8 +244,7 @@ class FilterGroup extends React.Component {
 		  input: {
 		  	padding: '10px',
 		  	margin: '5px',
-		    width: '-webkit-fill-available',
-				width: '80%',
+		    width: '80%',
 		    fontFamily: 'Helvetica, sans-serif',
 		    fontSize: 12,
 		    border: '1px solid #aaa',
@@ -270,7 +269,7 @@ class FilterGroup extends React.Component {
 		    position: 'absolute',
 		    top: 34,
 		    margin: '5px',
-		    width: '-webkit-fill-available',
+				width: '80%',
 		    border: '1px solid #aaa',
 		    backgroundColor: '#fff',
 		    fontFamily: 'Helvetica, sans-serif',
