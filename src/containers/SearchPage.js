@@ -38,8 +38,8 @@ class SearchPage extends Component {
 			method:'post',
 			data: results,
 			url:'http://129.10.111.210:8080/undergradschools',
-			headers: { 
-        'Content-Type': 'text/plain' 
+			headers: {
+        'Content-Type': 'text/plain'
       }
 		})
 		.then(function(response) {
@@ -54,8 +54,8 @@ class SearchPage extends Component {
 			method:'post',
 			data: results,
 			url:'http://129.10.111.210:8080/coops',
-			headers: { 
-        'Content-Type': 'text/plain' 
+			headers: {
+        'Content-Type': 'text/plain'
       }
 		})
 		.then(function(response) {
@@ -70,8 +70,8 @@ class SearchPage extends Component {
 			method:'post',
 			data: results,
 			url:'http://129.10.111.210:8080/undergradmajors',
-			headers: { 
-        'Content-Type': 'text/plain' 
+			headers: {
+        'Content-Type': 'text/plain'
       }
 		})
 		.then(function(response) {
@@ -86,8 +86,8 @@ class SearchPage extends Component {
 			method:'post',
 			data: results,
 			url:'http://129.10.111.210:8080/graduationyears',
-			headers: { 
-        'Content-Type': 'text/plain' 
+			headers: {
+        'Content-Type': 'text/plain'
       }
 		})
 		.then(function(response) {
@@ -106,7 +106,7 @@ class SearchPage extends Component {
 		})
 		.catch(function (error) {
 			console.log(error, "all schools");
-		});		
+		});
 
 		axios.get('http://129.10.111.210:8080/undergradmajors', config)
 		.then(function (response) {
@@ -135,7 +135,7 @@ class SearchPage extends Component {
 			console.log(error, "all coops");
 		});
 
-		results = 
+		results =
 		{
 			BeginIndex:0,
 			EndIndex:10000,
@@ -209,10 +209,10 @@ class SearchPage extends Component {
 					</div>
 					<div id="result_panel">
 						<ResultPanelContainer isMobile={isMobile}/>
-						<Footer />
 						<Chatbot />
 					</div>
 				</div>
+				<Footer />
 			</div>
 		);
 

@@ -34,7 +34,7 @@ class FilterGroup extends React.Component {
 
 	componentWillReceiveProps(newProps){
 		console.log(newProps, "new filters 2");
-		
+
 		let displayed = newProps.displayed;
 		let suggestions = newProps.all_items;
 
@@ -244,7 +244,7 @@ class FilterGroup extends React.Component {
 		  input: {
 		  	padding: '10px',
 		  	margin: '5px',
-		    width: '-webkit-fill-available',
+		    width: '80%',
 		    fontFamily: 'Helvetica, sans-serif',
 		    fontSize: 12,
 		    border: '1px solid #aaa',
@@ -269,7 +269,7 @@ class FilterGroup extends React.Component {
 		    position: 'absolute',
 		    top: 34,
 		    margin: '5px',
-		    width: '-webkit-fill-available',
+				width: '80%',
 		    border: '1px solid #aaa',
 		    backgroundColor: '#fff',
 		    fontFamily: 'Helvetica, sans-serif',
