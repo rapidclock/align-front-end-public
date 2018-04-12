@@ -39,7 +39,7 @@ class StudentFilter extends React.Component {
 		axios({
 			method:'post',
 			data: results,
-			url:'http://129.10.111.210:8080/students',
+			url:'https://asd4.ccs.neu.edu:8080/students',
 		})
 		.then(function(response) {
 			store.dispatch(FilterActions.setResults(response.data));

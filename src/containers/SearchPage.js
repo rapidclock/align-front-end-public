@@ -37,7 +37,7 @@ class SearchPage extends Component {
 		axios({
 			method:'post',
 			data: results,
-			url:'http://129.10.111.210:8080/undergradschools',
+			url:'https://asd4.ccs.neu.edu:8080/undergradschools',
 			headers: {
         'Content-Type': 'text/plain'
       }
@@ -53,7 +53,7 @@ class SearchPage extends Component {
 		axios({
 			method:'post',
 			data: results,
-			url:'http://129.10.111.210:8080/coops',
+			url:'https://asd4.ccs.neu.edu:8080/coops',
 			headers: {
         'Content-Type': 'text/plain'
       }
@@ -69,7 +69,7 @@ class SearchPage extends Component {
 		axios({
 			method:'post',
 			data: results,
-			url:'http://129.10.111.210:8080/undergradmajors',
+			url:'https://asd4.ccs.neu.edu:8080/undergradmajors',
 			headers: {
         'Content-Type': 'text/plain'
       }
@@ -85,7 +85,7 @@ class SearchPage extends Component {
 		axios({
 			method:'post',
 			data: results,
-			url:'http://129.10.111.210:8080/graduationyears',
+			url:'https://asd4.ccs.neu.edu:8080/graduationyears',
 			headers: {
         'Content-Type': 'text/plain'
       }
@@ -99,7 +99,7 @@ class SearchPage extends Component {
 		});
 
 
-		axios.get('http://129.10.111.210:8080/undergradschools', config)
+		axios.get('https://asd4.ccs.neu.edu:8080/undergradschools', config)
 		.then(function (response) {
 			console.log(response, "all schools");
 			store.dispatch(FilterActions.setAllUniversities(response.data));
@@ -108,7 +108,7 @@ class SearchPage extends Component {
 			console.log(error, "all schools");
 		});
 
-		axios.get('http://129.10.111.210:8080/undergradmajors', config)
+		axios.get('https://asd4.ccs.neu.edu:8080/undergradmajors', config)
 		.then(function (response) {
 			console.log(response, "all majors");
 			store.dispatch(FilterActions.setAllDegrees(response.data));
@@ -117,7 +117,7 @@ class SearchPage extends Component {
 			console.log(error, "all degrees");
 		});
 
-		axios.get('http://129.10.111.210:8080/graduationyears', config)
+		axios.get('https://asd4.ccs.neu.edu:8080/graduationyears', config)
 		.then(function (response) {
 			console.log(response, "all years");
 			store.dispatch(FilterActions.setAllYears(response.data));
@@ -126,7 +126,7 @@ class SearchPage extends Component {
 			console.log(error, "all years");
 		});
 
-		axios.get('http://129.10.111.210:8080/coops', config)
+		axios.get('https://asd4.ccs.neu.edu:8080/coops', config)
 		.then(function (response) {
 			console.log(response, "all coops");
 			store.dispatch(FilterActions.setAllCoops(response.data));
@@ -148,7 +148,7 @@ class SearchPage extends Component {
 		axios({
 			method:'post',
 			data: results,
-			url:'http://129.10.111.210:8080/students',
+			url:'https://asd4.ccs.neu.edu:8080/students',
 		})
 		.then(function(response) {
 			store.dispatch(FilterActions.setResults(response.data));
