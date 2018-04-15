@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import StudentFilter from 'components/student_filter'
+import StudentFilter from '../components/student_filter'
 
 const mapStateToProps = (state) => {
 	return {

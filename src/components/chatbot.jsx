@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import 'css/Chatbot.css'; 
+import '../containers/css/Chatbot.css'; 
 
 class Chatbot extends Component {
   constructor(props) {

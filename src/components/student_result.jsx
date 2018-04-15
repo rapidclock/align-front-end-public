@@ -1,6 +1,6 @@
 import React from 'react';
-import ProfilePlaceholder from 'images/profile_placeholder.png';
-import 'css/StudentResult.css';
+import ProfilePlaceholder from '../images/profile_placeholder.png';
+import '../containers/css/StudentResult.css';
 
 class StudentResult extends React.Component {
 	constructor(props){

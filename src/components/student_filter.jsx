@@ -1,7 +1,7 @@
 import React from 'react';
-import FilterGroupContainer from 'containers/filter_group_container';
-import 'css/StudentFilter.css';
-import * as FilterActions from 'redux/filter_actions';
+import FilterGroupContainer from '../containers/filter_group_container';
+import '../containers/css/StudentFilter.css';
+import * as FilterActions from '../redux/filter_actions';
 
 import axios from 'axios';
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from 'images/logo.svg';
-import Footer from  'components/footer.jsx';
+import logo from '../images/logo.svg';
+import Footer from  '../components/footer.jsx';
 import 'css/App.css';
 
 class App extends Component {

@@ -1,4 +1,4 @@
-import ResultPanel from 'components/result_panel'
+import ResultPanel from '../components/result_panel'
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {

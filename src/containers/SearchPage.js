@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import Footer from  'components/footer';
-import Header from 'components/header';
-import StudentFilterContainer from 'containers/student_filter_container';
-import ResultPanelContainer from 'containers/result_panel_container';
-import Chatbot from 'components/chatbot'
+import Footer from  '../components/footer';
+import Header from '../components/header';
+import Chatbot from '../components/chatbot';
+import StudentFilterContainer from '../containers/student_filter_container';
+import ResultPanelContainer from '../containers/result_panel_container';
 
-import * as FilterActions from 'redux/filter_actions';
+import * as FilterActions from '../redux/filter_actions';
 import axios from 'axios';
-import 'css/SearchPage.css';
+import './css/SearchPage.css';
 
 const MOBILE_VIEW_WIDTH = 600;
 

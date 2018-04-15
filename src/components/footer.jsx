@@ -1,5 +1,6 @@
 import React from 'react';
-import 'css/Footer.css';
+import '../containers/css/Footer.css';
+
 const MOBILE_VIEW_WIDTH = 600;
 
 class Footer extends React.Component {

@@ -8,8 +8,8 @@ import registerServiceWorker from './registerServiceWorker';
 
 import  { createStore, combineReducers } from "redux";
 
-import studentFilterReducer from "redux/student_filter_reducer";
-import filterGroupReducer from "redux/filter_group_reducer";
+import studentFilterReducer from "./redux/student_filter_reducer";
+import filterGroupReducer from "./redux/filter_group_reducer";
 
 
 //bootstrap styling
