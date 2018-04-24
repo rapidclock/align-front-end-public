@@ -212,6 +212,8 @@ class AggregateDataPanel extends React.Component {
 }
 
 const resultListStyle = {
+	minHeight: "100vh",
+	minWidth: "100vw",
 	justifyContent: "center",
 	display: "flex",
 	flexWrap: "wrap",
