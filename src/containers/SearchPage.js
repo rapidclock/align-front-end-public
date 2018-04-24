@@ -2,140 +2,48 @@ import React, { Component } from 'react';
 import Footer from  '../components/footer';
 import Header from '../components/header';
 import Chatbot from '../components/chatbot';
+import AggregateDataPanelContainer from '../containers/aggregate_data_panel_container'
 import StudentFilterContainer from '../containers/student_filter_container';
 import ResultPanelContainer from '../containers/result_panel_container';
 
-import * as FilterActions from '../redux/filter_actions';
-import axios from 'axios';
-import './css/SearchPage.css';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-const MOBILE_VIEW_WIDTH = 600;
+import {
+	setAllCoops, setAllGraduationYears, setAllDegrees, setAllUndergraduateSchools, setAllResults,
+	setDisplayedCoops, setDisplayedGraduationYears, setDisplayedDegrees, setDisplayedUndergraduateSchools,
+	setGenderStats, setStateStats, setCampusStats, setScholarshipStats, setUndergradMajorStats, setHighestEducationStats
+} from '../actions/all_actions';
 
-const config  = {
-	timeout: 1000,
-	"Content-Type": "application/json"
-}
+import { AppBar, Tabs, Tab, FloatingActionButton, Drawer } from 'material-ui';
+import ContentFilterList from 'material-ui/svg-icons/content/filter-list';
 
 class SearchPage extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			width: window.innerWidth,
+			value: 'a',
+			navOpen: false
 		};
-	}
 
+		this.handleChange = this.handleChange.bind(this);
+		this.handleNavClose = this.handleNavClose.bind(this);
+		this.handleNavToggle = this.handleNavToggle.bind(this);
+	}
 
 	componentDidMount(){
-		this.getData();
-	}
+		// filter stuff
+		this.props.setAllCoops();
+		this.props.setAllGraduationYears();
+		this.props.setAllDegrees();
+		this.props.setAllUndergraduateSchools();
+		this.props.setDisplayedCoops();
+		this.props.setDisplayedGraduationYears();
+		this.props.setDisplayedDegrees();
+		this.props.setDisplayedUndergraduateSchools();
 
-	getData(){
-		const store = this.props.store;
-		var results = "4";
-
-		axios({
-			method:'post',
-			data: results,
-			url:'https://asd4.ccs.neu.edu:8080/undergradschools',
-			headers: {
-        'Content-Type': 'text/plain'
-      }
-		})
-		.then(function(response) {
-			store.dispatch(FilterActions.setDisplayedUniversities(response.data));
-			console.log(response, "top schools");
-		})
-		.catch(function (error) {
-			console.log(error, " top schools error");
-		});
-
-		axios({
-			method:'post',
-			data: results,
-			url:'https://asd4.ccs.neu.edu:8080/coops',
-			headers: {
-        'Content-Type': 'text/plain'
-      }
-		})
-		.then(function(response) {
-			store.dispatch(FilterActions.setDisplayedCoops(response.data));
-			console.log(response, "top coops");
-		})
-		.catch(function (error) {
-			console.log(error, " top coops error");
-		});
-
-		axios({
-			method:'post',
-			data: results,
-			url:'https://asd4.ccs.neu.edu:8080/undergradmajors',
-			headers: {
-        'Content-Type': 'text/plain'
-      }
-		})
-		.then(function(response) {
-			store.dispatch(FilterActions.setDisplayedDegrees(response.data));
-			console.log(response, "top undergradmajors");
-		})
-		.catch(function (error) {
-			console.log(error, " top majors error");
-		});
-
-		axios({
-			method:'post',
-			data: results,
-			url:'https://asd4.ccs.neu.edu:8080/graduationyears',
-			headers: {
-        'Content-Type': 'text/plain'
-      }
-		})
-		.then(function(response) {
-			store.dispatch(FilterActions.setDisplayedYears(response.data));
-			console.log(response, "top graduationyears");
-		})
-		.catch(function (error) {
-			console.log(error, " top graduationyears error");
-		});
-
-
-		axios.get('https://asd4.ccs.neu.edu:8080/undergradschools', config)
-		.then(function (response) {
-			console.log(response, "all schools");
-			store.dispatch(FilterActions.setAllUniversities(response.data));
-		})
-		.catch(function (error) {
-			console.log(error, "all schools");
-		});
-
-		axios.get('https://asd4.ccs.neu.edu:8080/undergradmajors', config)
-		.then(function (response) {
-			console.log(response, "all majors");
-			store.dispatch(FilterActions.setAllDegrees(response.data));
-		})
-		.catch(function (error) {
-			console.log(error, "all degrees");
-		});
-
-		axios.get('https://asd4.ccs.neu.edu:8080/graduationyears', config)
-		.then(function (response) {
-			console.log(response, "all years");
-			store.dispatch(FilterActions.setAllYears(response.data));
-		})
-		.catch(function (error) {
-			console.log(error, "all years");
-		});
-
-		axios.get('https://asd4.ccs.neu.edu:8080/coops', config)
-		.then(function (response) {
-			console.log(response, "all coops");
-			store.dispatch(FilterActions.setAllCoops(response.data));
-		})
-		.catch(function (error) {
-			console.log(error, "all coops");
-		});
-
-		results =
+		let emptyInput =
 		{
 			BeginIndex:0,
 			EndIndex:10000,
@@ -143,81 +51,111 @@ class SearchPage extends Component {
 			UndergradDegree:[],
 			UndergradSchool:[],
 			GraduationYear:[],
-		}
+		};
 
-		axios({
-			method:'post',
-			data: results,
-			url:'https://asd4.ccs.neu.edu:8080/students',
-		})
-		.then(function(response) {
-			store.dispatch(FilterActions.setResults(response.data));
-			console.log(response, "results");
-		})
-		.catch(function (error) {
-			console.log(error, "results error");
+		this.props.setAllResults(emptyInput);
+
+		// aggregate data
+		this.props.setGenderStats();
+		this.props.setStateStats();
+		this.props.setCampusStats();
+		this.props.setScholarshipStats();
+		this.props.setUndergradMajorStats();
+		this.props.setHighestEducationStats();
+	}
+
+	handleChange(value){
+		this.setState({
+			value: value
 		});
 	}
 
-	componentWillMount() {
-		window.addEventListener('resize', this.handleWindowSizeChange);
+	handleNavToggle(){
+		this.setState({navOpen: !this.state.navOpen});
 	}
 
-	componentWillUnmount() {
-		window.removeEventListener('resize', this.handleWindowSizeChange);
-	}
-
-	handleWindowSizeChange = () => {
-		this.setState({ width: window.innerWidth });
-	};
-
-	handleSubmit(){
+	handleNavClose(){
+		this.setState({navOpen: false});
 	}
 
 	render() {
-		const {width} = this.state;
-		const isMobile = width < MOBILE_VIEW_WIDTH;
+		const width = window.innerWidth;
+		const isMobile = width < 600;
 
-		const mobileView = (
-			<div>
-				<div id="main_container">
-					<div id="filter_panel_mobile">
-						<StudentFilterContainer
-							store={this.props.store}
-							isMobile={isMobile}
-							submitHandler= {this.handleSubmit.bind(this)}/>
-					</div>
-					<div id="result_panel_mobile">
-						<ResultPanelContainer isMobile={isMobile}/>
-					</div>
-				</div>
-				<div>
-					<Footer/>
-				</div>
-			</div>
-		)
+		let changeHandler = this.handleChange;
+		let navToggleHandler = this.handleNavToggle;
 
-		const desktopView = (
-			<div>
-				<Header />
-				<div id="main_container">
-					<div id="filter_panel">
-						<StudentFilterContainer
-							store={this.props.store}
-							isMobile={isMobile}
-							submitHandler= {this.handleSubmit.bind(this)}/>
-					</div>
-					<div id="result_panel">
-						<ResultPanelContainer isMobile={isMobile}/>
-						<Chatbot />
-					</div>
-				</div>
+		let filterFab = this.state.value === 'b' ?
+		<FloatingActionButton 
+			style={fabStyle}
+			backgroundColor="#e11a2c"
+			onClick={navToggleHandler}>
+			<ContentFilterList />
+		</FloatingActionButton> : <Chatbot/>;
+
+		let header = isMobile ? 
+		<AppBar
+			title="Northeastern University - Align Program"
+			showMenuIconButton={false}
+			style={appBarStyle}
+			titleStyle={appBarTitleStyle} /> 
+		:
+		<Header/>;
+
+		return (
+			<div id="main_div">
+				<Drawer
+					docked={false}
+					width={320}
+					open={this.state.navOpen}
+					onRequestChange={(open) => this.setState({navOpen: open})} >
+					<StudentFilterContainer />
+				</Drawer>
+				{header}
+				<Tabs
+					value={this.state.value}
+					onChange={changeHandler} >
+					<Tab 
+					label="About the program" 
+					value="a"
+					style={tabStyle} >
+						<div>
+							<AggregateDataPanelContainer />
+						</div>
+					</Tab>
+					<Tab 
+					label="Find students like me" 
+					value="b"
+					style={tabStyle} >
+						<div>
+							<ResultPanelContainer />
+							{filterFab}
+						</div>
+					</Tab>
+				</Tabs>
 				<Footer />
 			</div>
 		);
-
-		return isMobile ? mobileView : desktopView;
 	}
 }
 
-export default SearchPage;
+
+const tabStyle = {backgroundColor: "#e11a2c", color:"#ffffff"};
+const appBarStyle = {backgroundColor: "#e11a2c"};
+const appBarTitleStyle = {fontFamily: '"HelveticaNeueW01-45Ligh", "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif'};
+const fabStyle = {position: "fixed", zIndex: "2", right: "10px", bottom: "10px"};
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+	setAllCoops,
+	setAllGraduationYears,
+	setAllDegrees,
+	setAllUndergraduateSchools, 
+	setAllResults,
+	setDisplayedCoops, 
+	setDisplayedGraduationYears, 
+	setDisplayedDegrees, 
+	setDisplayedUndergraduateSchools, setGenderStats, setStateStats, setCampusStats, setScholarshipStats, setUndergradMajorStats, setHighestEducationStats
+}, dispatch);
+
+
+export default connect(null, mapDispatchToProps)(SearchPage);

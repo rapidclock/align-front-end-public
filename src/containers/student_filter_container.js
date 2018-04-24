@@ -1,5 +1,8 @@
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import StudentFilter from '../components/student_filter'
+
+import { setAllResults } from '../actions/all_actions';
 
 const mapStateToProps = (state) => {
 	return {
@@ -8,6 +11,10 @@ const mapStateToProps = (state) => {
 	}
 }
 
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+	setAllResults
+}, dispatch);
 
-const StudentFilterContainer = connect(mapStateToProps)(StudentFilter);
+
+const StudentFilterContainer = connect(mapStateToProps, mapDispatchToProps)(StudentFilter);
 export default StudentFilterContainer;

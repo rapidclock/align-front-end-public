@@ -1,60 +1,52 @@
 import React from 'react';
-import ProfilePlaceholder from '../images/profile_placeholder.png';
-import '../containers/css/StudentResult.css';
+import {Card, CardHeader, Avatar} from 'material-ui';
 
 class StudentResult extends React.Component {
-	constructor(props){
-		super(props);
-
-		this.state = {
-			name:this.props.name,
-			image:ProfilePlaceholder,
-			coop:this.props.coop,
-			undergrad:this.props.undergrad,
-			location:this.props.location,
-			year:this.props.year
-		};
-	}
-
 	render() {
+		let graduationyear = this.props.graduationyear === undefined ? "" : this.props.graduationyear;
+		let undergraddegree = this.props.undergraddegree === undefined ? "" : this.props.undergraddegree;
+		let undergradschool = this.props.undergradschool === undefined ? "" : this.props.undergradschool;
+		let coop = this.props.coop === undefined ? "" : this.props.coop;
+		//let mobile = this.props.mobile === undefined ? false : this.props.mobile;
+
+		let firstletter = undergradschool.substring(0,1) === null ? "*" : undergradschool.substring(0,1);
+		let avatar = (
+		<Avatar>
+			{firstletter}
+		</Avatar>);
+
 		return(
-			<div id="student_result_container">
-				<div id="student_above_fold">
-					<img className="profile_picture" alt="" src={ProfilePlaceholder}></img>
-					<br/>
-					<a className="student_name"> {this.state.name}
-					</a>
-				</div>
-				<hr/>
-				<div id="student_below_fold">
-					<br/>
-					<a className="student_label"> Coop
-					</a>
-					<br/>
-					<a className="student_field"> {this.state.coop}
-					</a>
-					<br/>
-					<a className="student_label"> Undergrad Degree
-					</a>
-					<br/>
-					<a className="student_field"> {this.state.undergrad}
-					</a>
-					<br/>
-					<a className="student_label"> Location
-					</a>
-					<br/>
-					<a className="student_field"> {this.state.location}
-					</a>
-					<br/>
-					<a className="student_label"> Year
-					</a>
-					<br/>
-					<a className="student_field"> {this.state.year}
-					</a>
-				</div>
-			</div>	
+			<Card
+				style={{
+					width: "200px",
+					maxHeight: "300px",
+					overflow: "hidden",
+					margin: "10px",
+					paddingBottom: "10px"}}>
+				<CardHeader
+					title={undergradschool}
+					avatar={avatar}
+				/>
+				<CardHeader
+					title={"Coop:"}
+					subtitle={coop}
+					style={dataFieldStyle}
+				/>
+				<CardHeader
+					title={"Undergraduate Degree:"}
+					subtitle={undergraddegree}
+					style={dataFieldStyle}
+				/>
+				<CardHeader
+					title={"Graduation Year:"}
+					subtitle={graduationyear}
+					style={dataFieldStyle}
+				/>
+			</Card>
 		);
 	}
 }
+
+const dataFieldStyle = {padding:"0px", marginRight:"16px", marginLeft:"16px"};
 
 export default StudentResult;

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import '../containers/css/Chatbot.css'; 
 
+import { RaisedButton } from 'material-ui';
+
 class Chatbot extends Component {
   constructor(props) {
     super(props);
@@ -15,20 +17,33 @@ class Chatbot extends Component {
   }
 
   render() {
-  	let chatframe = this.state.collapse ? null : 
-  	(
-  		<iframe
+  	let chatframe = this.state.collapse ? 
+    <RaisedButton 
+      style={{margin:"10px"}}
+      onClick={this.toggle} 
+      label={this.state.label}
+      backgroundColor="#e11a2c"
+      labelColor="#ffffff">
+    </RaisedButton> : 
+    <div
+      style={{display:"inline-grid"}}>
+      <RaisedButton 
+        onClick={this.toggle} 
+        label={this.state.label}
+        backgroundColor="#2b313f"
+        labelColor="#ffffff">
+      </RaisedButton>
+      <iframe
         title="ask questions"
         id="chatbot"
         width="350"
         height="430"
-        src="https://console.dialogflow.com/api-client/demo/embedded/align-bot-test-web-demo">
+        src="https://console.dialogflow.com/api-client/demo/embedded/huskyalignbot">
       </iframe>
-    );
+    </div>;
 
     return (
       <div id="chatbot-div">
-        <button id="chatbot-toggle" color="primary" onClick={this.toggle}>{this.state.label}</button>
 				{chatframe}        
       </div>
     );

@@ -9,12 +9,9 @@ class Header extends React.Component {
 		return(
 			<div id="header_main_container">
 				<div id="header_logo">
-					<a href="https://www.ccis.northeastern.edu/" target="_blank">
+					<a href="https://www.ccis.northeastern.edu/" target="">
 						<div id="header_logo_svg" dangerouslySetInnerHTML={{ __html: svgString}} />
 					</a>
-				</div>
-				<div id="header_title">
-					Find Students Like Me
 				</div>
 			</div>
 		);

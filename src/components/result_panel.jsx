@@ -1,85 +1,73 @@
 import React from 'react';
 
 import '../containers/css/ResultPanel.css';
+import StudentResult from './student_result';
 
 class ResultPanel extends React.Component {
 
 	render() {
-		let students = this.props.results.students;
+		const width = window.innerWidth;
+		const isMobile = width < 600;
 
-		let isMobile = this.props.isMobile;
+		const resultListStyle = {
+			justifyContent: "flex-start",
+			display: "flex",
+			flexWrap: "wrap",
+			webKitFlexWrap: "wrap",
+			minHeight: "100vh",
+			minWidth: "100vh"
+		}
 
-		let empty = {coop: "No results", undergradschool: "No results", graduationyear: "No results", undergraddegree: "No results"};
-		let loading = {coop: "Loading", undergradschool: "Loading", graduationyear: "Loading", undergraddegree: "Loading"}
+		const emptyListStyle = {
+			minHeight: "100vh",
+			minWidth: "100vw"
+		}
 
-		students = students !== undefined ? students : [loading];
-		students = students.length !== 0 ? students : [empty];
+	    let students = this.props.results.students === undefined ? [] : this.props.results.students;
 
-		console.log(students, "all the data");
+		let isLoading = students !== undefined ? (students.length < 1) : true;
+		let mainDiv;
 
-		return(
-			<div id="result_panel_main_container">
-				{isMobile ? (
-					<div>
-						<table class="paleRedRows">
-			        <thead>
-			          <tr>
-			            <th>Coop</th>
-			            <th>Undergrad Degree Subject</th>
-			            <th>Undergraduate University</th>
-			            <th>Graduation Year at NEU</th>
-			          </tr>
-			        </thead>
-			        <tbody> 
-			        		
-			        		{
-			        		students.map(function(student){
-										return (
-											<tr>
-												<th>{student.coop}</th>
-												<th>{student.undergraddegree}</th>
-												<th>{student.undergradschool}</th>
-												<th>{student.graduationyear}</th>
-											</tr>
-										);
-									})
-			        	}
-			        </tbody>
-			      </table>
-					</div>
-				) : (
-					<div>
-						<div id="result_list">
-							<table class="paleRedRows">
-				        <thead>
-				          <tr>
-				            <th>Coop</th>
-				            <th>Undergrad Degree Subject</th>
-				            <th>Undergraduate University</th>
-				            <th>Graduation Year at NEU</th>
-				          </tr>
-				        </thead>
-				        <tbody> 
-				        		
-				        		{
-				        		students.map(function(student){
-											return (
-												<tr>
-													<th>{student.coop}</th>
-													<th>{student.undergraddegree}</th>
-													<th>{student.undergradschool}</th>
-													<th>{student.graduationyear}</th>
-												</tr>
-											);
-										})
-				        	}
-				        </tbody>
-				      </table>
-						</div>
-					</div>
-				)}
+		if(isLoading){
+			mainDiv = (
+			<div 
+				style={emptyListStyle}>
+				<StudentResult
+					key={0}
+					mobile={isMobile}
+					coop="N/A"
+					undergradschool="No results"
+					graduationyear="N/A"
+					undergraddegree="N/A" />
 			</div>
-		);
+			);
+		}
+		else{
+			mainDiv = (
+			<div 
+				style={resultListStyle}>
+				{students.map(function(student, index){
+					return (
+					<StudentResult
+						key={index}
+						mobile={isMobile}
+						coop={student.coop}
+						undergradschool={student.undergradschool}
+						graduationyear={student.graduationyear}
+						undergraddegree={student.undergraddegree} />
+					);
+				})}
+			</div>
+			);
+		}
+
+	    return(
+	      <div id="result_panel_main_container">
+	      	{
+	      		mainDiv
+	      	}
+	  		</div>
+	  	);
 	}
 }
 
