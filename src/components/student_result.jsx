@@ -7,7 +7,7 @@ class StudentResult extends React.Component {
 		let undergraddegree = this.props.undergraddegree === undefined ? "" : this.props.undergraddegree;
 		let undergradschool = this.props.undergradschool === undefined ? "" : this.props.undergradschool;
 		let coop = this.props.coop === undefined ? "" : this.props.coop;
-		//let mobile = this.props.mobile === undefined ? false : this.props.mobile;
+		let isMobile = this.props.mobile === undefined ? false : this.props.mobile;
 
 		let firstletter = undergradschool.substring(0,1) === null ? "*" : undergradschool.substring(0,1);
 		let avatar = (
@@ -17,14 +17,10 @@ class StudentResult extends React.Component {
 
 		return(
 			<Card
-				style={{
-					width: "200px",
-					maxHeight: "300px",
-					overflow: "hidden",
-					margin: "10px",
-					paddingBottom: "10px"}}>
+				style={isMobile ? mobileCardStyle : cardStyle}>
 				<CardHeader
-					title={undergradschool}
+					title={"University:"}
+					subtitle={undergradschool}
 					avatar={avatar}
 				/>
 				<CardHeader
@@ -45,6 +41,24 @@ class StudentResult extends React.Component {
 			</Card>
 		);
 	}
+}
+
+const mobileCardStyle={
+	width: "100%",
+	maxHeight: "300px",
+	overflow: "hidden",
+	margin: "10px",
+	paddingBottom: "10px",
+	paddingLeft:"20px"
+}
+
+
+const cardStyle={
+	width: "200px",
+	maxHeight: "300px",
+	overflow: "hidden",
+	margin: "10px",
+	paddingBottom: "10px"
 }
 
 const dataFieldStyle = {padding:"0px", marginRight:"16px", marginLeft:"16px"};

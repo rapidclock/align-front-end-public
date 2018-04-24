@@ -15,12 +15,12 @@ class ResultPanel extends React.Component {
 			flexWrap: "wrap",
 			webKitFlexWrap: "wrap",
 			minHeight: "100vh",
-			minWidth: "100vh"
+			minWidth: "100vw"
 		}
 
 		const emptyListStyle = {
 			minHeight: "100vh",
-			minWidth: "100vw"
+			minWidth: width
 		}
 
 	    let students = this.props.results.students === undefined ? [] : this.props.results.students;
