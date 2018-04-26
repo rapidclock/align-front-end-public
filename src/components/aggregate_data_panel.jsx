@@ -146,9 +146,9 @@ class AggregateDataPanel extends React.Component {
 					<CardHeader
 						title="Undergraduate Studies"
 						subtitle="What did students study before coming to the Align program?"
-						actAsExpander={true}
-	  					showExpandableButton={true} />
-					<CardText expandable={true}>
+						actAsExpander={isMobile}
+	  					showExpandableButton={isMobile} />
+					<CardText expandable={isMobile}>
 						<Doughnut data={undergradMajorData} options={options} />
 					</CardText>
 				</Card>
@@ -156,9 +156,9 @@ class AggregateDataPanel extends React.Component {
 					style={cardStyle} >
 					<CardHeader
 						title="Gender breakdown of our students:"
-						actAsExpander={true}
-      					showExpandableButton={true} />
-					<CardText expandable={true}>
+						actAsExpander={isMobile}
+      					showExpandableButton={isMobile} />
+					<CardText expandable={isMobile}>
 						<Doughnut data={genderData} options={options} />
 					</CardText>
 				</Card>
@@ -167,9 +167,9 @@ class AggregateDataPanel extends React.Component {
 					<CardHeader
 						title="Origin of our students"
 						subtitle="Which states are our students from?"
-						actAsExpander={true}
-      					showExpandableButton={true} />
-					<CardText expandable={true}>
+						actAsExpander={isMobile}
+      					showExpandableButton={isMobile} />
+					<CardText expandable={isMobile}>
 						<Doughnut data={stateData} options={options} />
 					</CardText>
 				</Card>
@@ -178,9 +178,9 @@ class AggregateDataPanel extends React.Component {
 					<CardHeader
 						title="Multiple choices at multiple campuses"
 						subtitle="Where are students enrolled?"
-						actAsExpander={true}
-      					showExpandableButton={true} />
-					<CardText expandable={true}>
+						actAsExpander={isMobile}
+      					showExpandableButton={isMobile} />
+					<CardText expandable={isMobile}>
 						<Doughnut data={campusData} options={options} />
 					</CardText>
 				</Card>
@@ -189,9 +189,9 @@ class AggregateDataPanel extends React.Component {
 					<CardHeader
 						title="Academic reward"
 						subtitle="How many students havescholarships?"
-						actAsExpander={true}
-      					showExpandableButton={true} />
-					<CardText expandable={true}>
+						actAsExpander={isMobile}
+      					showExpandableButton={isMobile} />
+					<CardText expandable={isMobile}>
 						<Doughnut data={scholarshipData} options={options} />
 					</CardText>
 				</Card>
@@ -200,9 +200,9 @@ class AggregateDataPanel extends React.Component {
 					<CardHeader
 						title="Do I need to have a masters already?"
 						subtitle="Highest education level of current students in the Align program"
-						actAsExpander={true}
-      					showExpandableButton={true} />
-					<CardText expandable={true}>
+						actAsExpander={isMobile}
+      					showExpandableButton={isMobile} />
+					<CardText expandable={isMobile}>
 						<Doughnut data={highestEducationData} options={options} />
 					</CardText>
 				</Card>

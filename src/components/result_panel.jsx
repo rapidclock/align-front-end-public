@@ -9,18 +9,21 @@ class ResultPanel extends React.Component {
 		const width = window.innerWidth;
 		const isMobile = width < 600;
 
+		const mobileResultListStyle = {
+			justifyContent: "flex-start",
+			display: "flex",
+			flexWrap: "wrap",
+			webKitFlexWrap: "wrap",
+			minHeight: "100vh",
+			midWidth: width
+		}
+
 		const resultListStyle = {
 			justifyContent: "flex-start",
 			display: "flex",
 			flexWrap: "wrap",
 			webKitFlexWrap: "wrap",
 			minHeight: "100vh",
-			minWidth: "100vw"
-		}
-
-		const emptyListStyle = {
-			minHeight: "100vh",
-			minWidth: width
 		}
 
 	    let students = this.props.results.students === undefined ? [] : this.props.results.students;
@@ -31,7 +34,7 @@ class ResultPanel extends React.Component {
 		if(isLoading){
 			mainDiv = (
 			<div 
-				style={emptyListStyle}>
+				style={isMobile ? mobileResultListStyle : resultListStyle}>
 				<StudentResult
 					key={0}
 					mobile={isMobile}
@@ -45,7 +48,7 @@ class ResultPanel extends React.Component {
 		else{
 			mainDiv = (
 			<div 
-				style={resultListStyle}>
+				style={isMobile ? mobileResultListStyle : resultListStyle}>
 				{students.map(function(student, index){
 					return (
 					<StudentResult

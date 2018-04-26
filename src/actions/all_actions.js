@@ -121,7 +121,7 @@ export function setAllDegrees(){
 	return (dispatch, getState) => {
 		axios({
 			method:'get',
-			url:'https://asd4.ccs.neu.edu:8080/coops',
+			url:'https://asd4.ccs.neu.edu:8080/undergradmajors',
 			headers: {
 				'Content-Type': 'text/plain'
 			}

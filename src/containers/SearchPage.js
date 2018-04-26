@@ -93,17 +93,51 @@ class SearchPage extends Component {
 			<ContentFilterList />
 		</FloatingActionButton> : <Chatbot/>;
 
-		let header = isMobile ? 
-		<AppBar
-			title="Northeastern University - Align Program"
-			showMenuIconButton={false}
-			style={appBarStyle}
-			titleStyle={appBarTitleStyle} /> 
-		:
-		<Header/>;
-
-		return (
+		let desktopView = 
+		(
 			<div id="main_div">
+				<Header/>
+				<Tabs
+					value={this.state.value}
+					onChange={changeHandler} >
+					<Tab 
+					label="About the program" 
+					value="a"
+					style={tabStyle} >
+						<div>
+							<AggregateDataPanelContainer />
+						</div>
+					</Tab>
+					<Tab 
+					label="Find students like me" 
+					value="b"
+					style={tabStyle} >
+						<div 
+							id="main_container"
+							style={{display:"inline-flex"}}>
+							<div 
+								id="filter_panel"
+								style={{display:"inline-flex"}}>
+								<StudentFilterContainer />
+							</div>
+							<div id="result_panel">
+								<ResultPanelContainer />
+							</div>
+						</div>
+					</Tab>
+				</Tabs>
+				<Footer />
+			</div>
+		);
+
+
+		let mobileView = (
+			<div id="main_div">
+				<AppBar
+					title="Northeastern University - Align Program"
+					showMenuIconButton={false}
+					style={appBarStyle}
+					titleStyle={appBarTitleStyle} /> 
 				<Drawer
 					docked={false}
 					width={320}
@@ -111,7 +145,6 @@ class SearchPage extends Component {
 					onRequestChange={(open) => this.setState({navOpen: open})} >
 					<StudentFilterContainer />
 				</Drawer>
-				{header}
 				<Tabs
 					value={this.state.value}
 					onChange={changeHandler} >
@@ -136,6 +169,8 @@ class SearchPage extends Component {
 				<Footer />
 			</div>
 		);
+
+		return isMobile ? mobileView : desktopView;
 	}
 }
 
